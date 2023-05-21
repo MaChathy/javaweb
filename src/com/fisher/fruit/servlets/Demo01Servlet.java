@@ -12,7 +12,7 @@ import java.io.IOException;
  * @author fisher
  * @version 1.0.1 2023/5/21 - 14:25
  */
-public class Dome01Servlet extends HttpServlet {
+public class Demo01Servlet extends HttpServlet {
     @Override
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         super.doPost(request, response);

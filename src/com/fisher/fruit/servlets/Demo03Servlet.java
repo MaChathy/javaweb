@@ -15,7 +15,7 @@ import java.io.IOException;
  * @author fisher
  * @version 1.0.1 2023/5/21 - 17:41
  */
-public class Dome03Servlet extends HttpServlet {
+public class Demo03Servlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)

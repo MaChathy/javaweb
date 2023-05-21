@@ -166,7 +166,11 @@
         session.setMaxInactiveInterval(int i) -> 设置session对象的非激活间隔时长    
         session.invalidate() -> 强制使Session对象立即失效
     
-    4)Session保存作用域
+    4)Session对象保存作用域
+        常用API：
+        void session.setAttribute(K,V)  -> 设置保存作用域 
+        Object session.getAttribute(K)  -> 获取保存作用的值
+        void session.removeAttribute(K) -> 删除保存作用域中的键值对
         
 
 首次访问后输出
