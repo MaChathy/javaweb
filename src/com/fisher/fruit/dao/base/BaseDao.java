@@ -19,57 +19,6 @@ import java.util.List;
  */
 public abstract class BaseDao<T> {
 
-    public int executeUpdateA(String sql,Object... params) throws SQLException {
-        Connection connection = JdbcUtilsV2.getConnection();
-        PreparedStatement preparedStatement = connection.prepareStatement(sql);
-        if (params != null && params.length != 0)
-            for (int i = 0; i < params.length; i++)
-                preparedStatement.setObject(i + 1, params[i]);
-        int rows = preparedStatement.executeUpdate();
-        preparedStatement.close();
-        if (connection.getAutoCommit()){
-            JdbcUtilsV2.freeConnection();
-        }
-        return rows;
-    }
-
-    public <E> List<E> executeQueryA(Class<E> clazz,String sql,Object... params) throws SQLException, InstantiationException, IllegalAccessException, NoSuchFieldException {
-
-        Connection connection = JdbcUtilsV2.getConnection();
-
-        PreparedStatement preparedStatement = connection.prepareStatement(sql);
-
-        if (params != null && params.length != 0)
-            for (int i = 0; i < params.length; i++)
-                preparedStatement.setObject(i + 1, params[i]);
-
-        ResultSet resultSet = preparedStatement.executeQuery();
-
-        List<E> list = new ArrayList<>();
-
-        ResultSetMetaData metaData = resultSet.getMetaData();
-
-        int columnCount = metaData.getColumnCount();
-
-        while (resultSet.next()){
-            E e = clazz.newInstance();
-
-            for (int i = 1; i <= columnCount; i++) {
-                Field field = clazz.getDeclaredField(metaData.getColumnName(i));
-                field.setAccessible(true);
-                field.set(e, resultSet.getObject(i));
-            }
-            list.add(e);
-        }
-
-        resultSet.close();
-        preparedStatement.close();
-        if (connection.getAutoCommit()){
-            JdbcUtilsV2.freeConnection();
-        }
-
-        return list;
-    }
 
     public final String DRIVER = "com.mysql.cj.jdbc.Driver" ;
     public final String URL = "jdbc:mysql://localhost:3306/fruitdb?" +
