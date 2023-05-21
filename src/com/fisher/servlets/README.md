@@ -74,13 +74,13 @@
         初始化：init();
         服务：service();
         销毁：destroy();
-    ![img.png](img.png)
+![img.png](img.png)
 
     2）默认情况下：
         ①servlet第一次接收请求时，会进行实例化(调用构造器)初始化(调用init方法),然后服务(调用service方法)；
         ②从第二次请求开始后，每一次都是服务；
         ③当容器（tomcat）关闭时，其中的所有的servlet实例都会被调用销毁方法（被销毁）。
-    ![img_1.png](img_1.png)
+![img_1.png](img_1.png)
 
     3)servlet实例对象，tomcat只能创建一个，所有的请求都是通过者一个实例去响应。
         优势：提高系统的启动速度；
