@@ -11,6 +11,15 @@
         <servlet-name>AddServlet</servlet-name>
         <url-pattern>/add.do</url-pattern>
     </servlet-mapping>
+
+    <servlet>
+        <servlet-name>Dome01Servlet</servlet-name>
+        <servlet-class>com.fisher.fruit.servlets.Dome01Servlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>Dome01Servlet</servlet-name>
+        <url-pattern>/dome01</url-pattern>
+    </servlet-mapping>
     <!--
     ①用户（client）请求 action="add.do"
     ②服务器（项目），web.xml中找到url-pattern = /add.do
