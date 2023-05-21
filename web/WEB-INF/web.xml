@@ -39,6 +39,18 @@
         <servlet-name>Dome02Servlet</servlet-name>
         <url-pattern>/dome02</url-pattern>
     </servlet-mapping>
+
+    <!--演示Session-->
+    <servlet>
+        <servlet-name>Dome03Servlet</servlet-name>
+        <servlet-class>com.fisher.fruit.servlets.Dome03Servlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>Dome03Servlet</servlet-name>
+        <url-pattern>/dome03</url-pattern>
+    </servlet-mapping>
+
     <!--
     ①用户（client）请求 action="add.do"
     ②服务器（项目），web.xml中找到url-pattern = /add.do

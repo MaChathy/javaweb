@@ -106,11 +106,82 @@
         若已经定义，则：不要修改成员变量的值;不要使用成员变量进行逻辑判断**
 
 **4.http协议**
+    
+  HTTP：Hyper Text Transfer Protocol 超文本传输协议。
+
+  HTTP最大的作用就是确定了请求和响应数据的格式。
+
+  浏览器发送给服务器的数据：请求报文；服务器返回给浏览器的数据：响应报文。
+ 
+    1)Http request : Http请求报文
+    
+        ①请求行 : 展示当前请求的最基本的信息
+            请求方式/访问地址(url) HTTP协议的版本（1.1或1.0）
+            e.g. POST/dynamic/hello.jsp HTTP/1.1
+    
+        ②请求消息头 : 通过具体的参数对本次请求进行详细的说明
+    
+        ③请求体 : 作为request的主题，发送数据给服务器（POST请求方式下的请求参数）
+            POST请求方式有请求体，form data : 当前请求体是一个表单提交的请求参数
+
+            GET请求方式下没有请求体，但有QueryString(查询字符串)
+            
+            JSON请求方式有请求体，request payload
+    
+    2)Http response : Http响应报文
+        
+        ①响应状态行：
+            响应协议 响应状态码 响应状态(OK)
+            e.g. HTTP/1.1 200 OK
+
+        ②响应消息头：响应体的说明书（服务器发送给浏览器的信息简介）
+
+        ③响应体：响应的实际内容（服务器返回的数据主题）
 
 **5.会话**
+    
+    1)Http是无状态的
+
+        服务器无法判断每次请求是否是同一个或者是多个客户端发送的。
+        
+        无状态现实问题:
+            用户在网站购买商品，发送两次请求
+            请求1是添加商品到购物车，请求2是是结账
+            若服务器无法区分这两次请求是同一个用户的，则会产生混乱
+        
+        解决无状态问题：会话跟踪技术
+    
+    2)会话跟踪技术(利用Session)
+        客户端首次发送请求给服务器时，服务器获取不到Session，则创建新的Session对象，并响应给客户端。
+        客户端再次访问时，服务器就能分辨各个客户端
+
+    3)常用API：
+        request.getSession() -> 获取当前会话，没有则创建一个新会话
+        request.getSession(true) -> 作用同上相同
+        request.getSession(false) -> 获取当前会话，没有则返回null,不会创建新会话
+        
+        session.getId() -> 获取Session id（全局唯一码）
+        session.isNew() -> 判断当前Session对象是否是新创建的
+        session.getMaxInactiveInterval() -> session对象的非激活间隔时长，默认为1800s
+        session.setMaxInactiveInterval(int i) -> 设置session对象的非激活间隔时长    
+        session.invalidate() -> 强制使Session对象立即失效
+    
+    4)Session保存作用域
+        
+
+首次访问后输出
+
+![img_2.png](Session_1.png)
+
+多次刷新页面后输出
+
+![img_3.png](Session_2.png)
 
 **6.Themeleaf**
 
-**7.error code**
+**7.状态码**
 
     1) 500 :表示服务器内部错误
+    2) 200 :正常响应
+    3) 404 :找不到资源
+    4) 405 :请求方式不支持
