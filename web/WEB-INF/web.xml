@@ -19,4 +19,11 @@
     ⑤找servlet-class -> com.fisher.servlet.AddServlet
     ⑥用户发送的是post请求（method=“post”），因此tomcat会执行AddServlet中的doPost方法。
     -->
+    <!--项目初始页
+    <welcome-file-list>
+        <welcome-file>index.html</welcome-file>
+        <welcome-file>index.htm</welcome-file>
+        <welcome-file>index.jsp</welcome-file>
+    </welcome-file-list>
+    -->
 </web-app>

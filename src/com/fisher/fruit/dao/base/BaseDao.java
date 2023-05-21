@@ -89,7 +89,7 @@ public abstract class BaseDao<T> {
 
     //执行更新，返回影响行数
     protected int executeUpdate(String sql , Object... params){
-        boolean insertFlag = false ;
+        boolean insertFlag;
         insertFlag = sql.trim().toUpperCase().startsWith("INSERT");
         try {
             conn = getConn();

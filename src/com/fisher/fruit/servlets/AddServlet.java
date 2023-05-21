@@ -31,9 +31,9 @@ public class AddServlet extends HttpServlet {
         int fCount = Integer.parseInt(request.getParameter("fCount"));
         String remark = request.getParameter("remark");
 
-    //    System.out.println("名称"+fName+"\n价格"+price+"\n库存"+fCount+"\n备注"+remark);
-        FruitDao fruitDao = new FruitDaoImpl();
-        boolean flag = fruitDao.addFruit(new Fruit(0, fName, price, fCount, remark));
-        System.out.println(flag?"添加成功":"添加失败");
+        System.out.println("名称："+fName+"\n价格："+price+"\n库存："+fCount+"\n备注："+remark);
+//        FruitDao fruitDao = new FruitDaoImpl();
+//        boolean flag = fruitDao.addFruit(new Fruit(0, fName, price, fCount, remark));
+//        System.out.println(flag?"添加成功":"添加失败");
     }
 }
