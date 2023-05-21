@@ -28,8 +28,13 @@
     <servlet>
         <servlet-name>Dome02Servlet</servlet-name>
         <servlet-class>com.fisher.fruit.servlets.Dome02Servlet</servlet-class>
+        <load-on-startup>1</load-on-startup>
+        <!--
+            number数字越小启动的时间越靠前
+            可以使用注解annotation
+            <load-on-startup>number</load-on-startup>
+        -->
     </servlet>
-
     <servlet-mapping>
         <servlet-name>Dome02Servlet</servlet-name>
         <url-pattern>/dome02</url-pattern>
