@@ -183,11 +183,20 @@
 
 6.服务器内部转发以及客户端定向
     
-    1)服务器内部转发
-    request.getRequestDispatcher("...").forward(request,response);
-    
-    2)客户端重定向
-    response.sendRedirect("...");
+    1)服务器内部转发：request.getRequestDispatcher("...").forward(request,response);
+![img_4.png](img_4.png)
+
+    地址栏不改变,一次请求响应的过程，对于客户端而言，不知道内部经过了多少次转发
+![img_8.png](img_8.png)
+![img_9.png](img_9.png)
+
+    2)客户端重定向：response.sendRedirect("...");
+![img_5.png](img_5.png)
+
+    地址栏改变，多次请求响应的过程，客户端知道url有变化
+![img_6.png](img_6.png)
+![img_7.png](img_7.png)
+
 
 
 **7.Themeleaf**
