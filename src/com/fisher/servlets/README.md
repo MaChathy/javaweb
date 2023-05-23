@@ -175,15 +175,25 @@
 
 首次访问后输出
 
-![img_2.png](Session_1.png)
+![img_2.png]
 
 多次刷新页面后输出
 
-![img_3.png](Session_2.png)
+![img_3.png]
 
-**6.Themeleaf**
+6.服务器内部转发以及客户端定向
+    
+    1)服务器内部转发
+    request.getRequestDispatcher("...").forward(request,response);
+    
+    2)客户端重定向
+    response.sendRedirect("...");
 
-**7.状态码**
+
+**7.Themeleaf**
+
+
+**8.状态码**
 
     1) 500 :表示服务器内部错误
     2) 200 :正常响应
