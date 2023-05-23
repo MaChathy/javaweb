@@ -12,7 +12,7 @@ import java.io.IOException;
  * @author fisher
  * @version 1.0.1 2023/5/21 - 18:42
  */
-public class Dome05Servlet extends HttpServlet {
+public class Demo05Servlet extends HttpServlet {
 
     @Override
     protected void service(HttpServletRequest request, HttpServletResponse response) throws

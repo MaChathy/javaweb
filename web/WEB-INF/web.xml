@@ -49,7 +49,7 @@
     <!--演示Session保存作用域-->
     <servlet>
         <servlet-name>Dome04Servlet</servlet-name>
-        <servlet-class>com.fisher.fruit.servlets.Dome04Servlet</servlet-class>
+        <servlet-class>com.fisher.fruit.servlets.Demo04Servlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>Dome04Servlet</servlet-name>
@@ -57,7 +57,7 @@
     </servlet-mapping>
     <servlet>
         <servlet-name>Dome05Servlet</servlet-name>
-        <servlet-class>com.fisher.fruit.servlets.Dome05Servlet</servlet-class>
+        <servlet-class>com.fisher.fruit.servlets.Demo05Servlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>Dome05Servlet</servlet-name>
