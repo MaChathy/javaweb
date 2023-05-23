@@ -80,6 +80,7 @@
         <servlet-name>Demo07Servlet</servlet-name>
         <url-pattern>/demo07</url-pattern>
     </servlet-mapping>
+    <!--演示Thymeleaf-->
 
 
     <!--

@@ -199,7 +199,10 @@
 
 
 
-**7.Themeleaf**
+**7.Themeleaf--视图模板技术**
+
+![img_10.png](img_10.png)
+
 
 
 **8.状态码**
