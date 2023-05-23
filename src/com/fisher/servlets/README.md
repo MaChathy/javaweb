@@ -203,6 +203,8 @@
 
 ![img_10.png](img_10.png)
 
+配置thymeleaf：
+
     1)添加thymeleaf的jar包
     2)新建一个Servlet类：ViewBaseServlet
     3)在web.xml文件中添加配置
@@ -213,6 +215,14 @@
         逻辑视图名称：   index
         物理视图名称：   view-prefix + 逻辑视图名称 + view-suffix
         视图名称为：    /index.html
+
+使用thymeleaf标签：
+        
+    th:if       条件判断
+    th:unless   相当于else
+    th:text     Html标签中的文本
+    th:each     循环
+
 
 
 
