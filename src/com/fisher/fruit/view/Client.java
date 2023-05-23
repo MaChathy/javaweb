@@ -9,6 +9,7 @@ import com.fisher.fruit.controller.Menu;
  * @version 1.0.1 2023/5/20 - 21:12
  */
 public class Client {
+/*
     public static void main(String[] args) {
         Menu m = new Menu() ;
 
@@ -40,4 +41,6 @@ public class Client {
         }
         System.out.println("谢谢使用！再见！");
     }
+
+ */
 }

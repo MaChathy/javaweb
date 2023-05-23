@@ -14,6 +14,7 @@ import java.util.Scanner;
  * @version 1.0.1 2023/5/20 - 21:06
  */
 public class Menu {
+    /*
     Scanner input = new Scanner(System.in);
     FruitDao fruitDAO = new FruitDaoImpl();
 
@@ -113,4 +114,6 @@ public class Menu {
         String slt = input.next();
         return !"Y".equalsIgnoreCase(slt);
     }
+
+     */
 }

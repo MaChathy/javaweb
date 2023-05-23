@@ -203,6 +203,17 @@
 
 ![img_10.png](img_10.png)
 
+    1)添加thymeleaf的jar包
+    2)新建一个Servlet类：ViewBaseServlet
+    3)在web.xml文件中添加配置
+        配置前缀（prefix），配置后缀（suffix）
+    4)使自定义Server子类继承ViewBaseServlet
+    5)根据逻辑视图名称通过process...()方法 得到物理视图名称
+        thymeleaf会将逻辑视图名称"index"对应到物理视图名称上
+        逻辑视图名称：   index
+        物理视图名称：   view-prefix + 逻辑视图名称 + view-suffix
+        视图名称为：    /index.html
+
 
 
 **8.状态码**

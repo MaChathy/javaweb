@@ -1,4 +1,4 @@
-package com.fisher.fruit.dao.base;
+package com.fisher.myssm.basedao;
 
 import com.fisher.fruit.utils.JdbcUtilsV2;
 

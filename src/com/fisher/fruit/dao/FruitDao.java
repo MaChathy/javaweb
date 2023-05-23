@@ -12,7 +12,7 @@ import java.util.List;
 public interface FruitDao  {
     //查询库存列表
     List<Fruit> getFruitList();
-
+    /*
     //新增库存
     boolean addFruit(Fruit fruit);
 
@@ -24,4 +24,5 @@ public interface FruitDao  {
 
     //删除特定库存记录
     boolean delFruit(String fname);
+     */
 }

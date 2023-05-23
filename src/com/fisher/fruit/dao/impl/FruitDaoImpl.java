@@ -1,11 +1,9 @@
 package com.fisher.fruit.dao.impl;
 
 import com.fisher.fruit.dao.FruitDao;
-import com.fisher.fruit.dao.base.BaseDao;
+import com.fisher.myssm.basedao.BaseDao;
 import com.fisher.fruit.pojo.Fruit;
 
-import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -20,6 +18,7 @@ public class FruitDaoImpl extends BaseDao<Fruit> implements FruitDao {
         return super.executeQuery("select * from t_fruit");
     }
 
+    /*
     @Override
     public boolean addFruit(Fruit fruit) {
         String sql = "insert into t_fruit values(0,?,?,?,?)";
@@ -45,4 +44,5 @@ public class FruitDaoImpl extends BaseDao<Fruit> implements FruitDao {
         String sql = "delete from t_fruit where fname like ? " ;
         return super.executeUpdate(sql,fname)>0;
     }
+     */
 }
