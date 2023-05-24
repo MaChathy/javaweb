@@ -7,10 +7,10 @@
 <div id="div_container">
   <div id="div_fruit_list">
     <p class="center f30">编辑水果库存信息</p>
-      <form method="post" th:action="@{/update.do}">
+      <form method="post" th:action="@{/update.do}" th:object="${afruit}">
         <!--隐藏域 ： 用户不可见，可通过表单提交-->
         <input type="hidden" name="fid" th:value="*{fid}"/>
-        <table id="tbl_fruit" th:object="${afruit}">
+        <table id="tbl_fruit" >
             <tr>
               <th class="w20">名称</th>
               <td><input type="text" name="fname" th:value="*{fname}"/></td>

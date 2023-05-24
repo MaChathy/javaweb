@@ -26,6 +26,7 @@ public class IndexServlet extends ViewBaseServlet {
         List<Fruit> fruitList = fruitDao.getFruitList();
         HttpSession session = request.getSession();
         session.setAttribute("fruitList", fruitList);
+
         super.processTemplate("index",request,response);
     }
 }
