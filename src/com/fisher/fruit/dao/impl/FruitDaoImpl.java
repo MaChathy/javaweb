@@ -31,6 +31,12 @@ public class FruitDaoImpl extends BaseDao<Fruit> implements FruitDao {
         super.executeUpdate(sql,fruit.getFname(),fruit.getPrice(),fruit.getFcount(),fruit.getRemark(),fruit.getFid());
     }
 
+    @Override
+    public void delFruit(Integer fid) {
+        String sql = "delete from t_fruit where fid = ?";
+        super.executeUpdate(sql,fid);
+    }
+
     /*
     @Override
     public boolean addFruit(Fruit fruit) {

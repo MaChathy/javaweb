@@ -2,6 +2,7 @@
 	<head>
 		<meta charset="utf-8">
 		<link rel="stylesheet" href="css/index.css">
+		<script language="JavaScript" src="js/index.js"></script>
 	</head>
 	<body>
 		<div id="div_container">
@@ -23,7 +24,8 @@
 						<td><a th:href="@{/edit.do(fid=${fruit.fid})}" th:text="${fruit.fname}">--</a></td>
 						<td th:text="${fruit.price}">--</td>
 						<td th:text="${fruit.fcount}">--</td>
-						<td><img src="imgs/del.jpg" class="delImg"/></td>
+						<td><img src="imgs/del.jpg" class="delImg" th:onclick="|delFruit(${fruit.fid})|" /></td>
+						<!--<td><img src="imgs/del.jpg" class="delImg" th:onclick="'delFruit('+${fruit.fid}+')'" /></td>-->
 					</tr>
 				</table>
 				

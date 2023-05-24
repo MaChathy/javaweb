@@ -38,7 +38,7 @@ public class UpdateServlet extends ViewBaseServlet {
         //4.资源跳转，返回index页面
 //        super.processTemplate("index",request,response);
         //request.getResponseDispatcher("index.html").forward(request,response);
-
+        //客户端重定向
         response.sendRedirect("index");
     }
 }
