@@ -12,6 +12,9 @@ import java.util.List;
 public interface FruitDao  {
     //查询库存列表
     List<Fruit> getFruitList();
+
+    //根据fid获取特定的水果库存信息
+    Fruit getFruitByFid(int fid);
     /*
     //新增库存
     boolean addFruit(Fruit fruit);

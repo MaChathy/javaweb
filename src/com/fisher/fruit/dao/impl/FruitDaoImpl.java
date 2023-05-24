@@ -18,6 +18,12 @@ public class FruitDaoImpl extends BaseDao<Fruit> implements FruitDao {
         return super.executeQuery("select * from t_fruit");
     }
 
+    @Override
+    public Fruit getFruitByFid(int fid) {
+        String sql = "select * from t_fruit where fid = ?";
+        return super.load(sql,fid);
+    }
+
     /*
     @Override
     public boolean addFruit(Fruit fruit) {
