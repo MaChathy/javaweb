@@ -37,6 +37,12 @@ public class FruitDaoImpl extends BaseDao<Fruit> implements FruitDao {
         super.executeUpdate(sql,fid);
     }
 
+    @Override
+    public void addFruit(Fruit fruit) {
+        String sql = "insert into t_fruit values(0,?,?,?,?)";
+        super.executeUpdate(sql,fruit.getFname(),fruit.getPrice(),fruit.getFcount(),fruit.getRemark());
+    }
+
     /*
     @Override
     public boolean addFruit(Fruit fruit) {

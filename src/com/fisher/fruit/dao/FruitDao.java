@@ -22,6 +22,9 @@ public interface FruitDao  {
     //删除特定水果库存信息
     void delFruit(Integer fid);
 
+    //添加水果库存信息
+    void addFruit(Fruit fruit);
+
     /*
     //新增库存
     boolean addFruit(Fruit fruit);
