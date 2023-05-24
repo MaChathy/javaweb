@@ -14,7 +14,6 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 /**
- * This program demonstrates se_projects
  *
  * @author fisher
  * @version 1.0.1 2023/5/23 - 19:09

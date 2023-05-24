@@ -13,6 +13,7 @@
         <url-pattern>/add.do</url-pattern>
     </servlet-mapping>
     <!--演示servlet中service方法-->
+    <!--
     <servlet>
         <servlet-name>Dome01Servlet</servlet-name>
         <servlet-class>com.fisher.fruit.servlets.Demo01Servlet</servlet-class>
@@ -21,22 +22,22 @@
         <servlet-name>Dome01Servlet</servlet-name>
         <url-pattern>/dome01</url-pattern>
     </servlet-mapping>
-    <!--演示servlet生命周期-->
+    演示servlet生命周期
     <servlet>
         <servlet-name>Dome02Servlet</servlet-name>
         <servlet-class>com.fisher.fruit.servlets.Demo02Servlet</servlet-class>
         <load-on-startup>1</load-on-startup>
-        <!--
+
             number数字越小启动的时间越靠前
             可以使用注解annotation
             <load-on-startup>number</load-on-startup>
-        -->
+
     </servlet>
     <servlet-mapping>
         <servlet-name>Dome02Servlet</servlet-name>
         <url-pattern>/dome02</url-pattern>
     </servlet-mapping>
-    <!--演示Session会话跟踪技术-->
+    演示Session会话跟踪技术
     <servlet>
         <servlet-name>Dome03Servlet</servlet-name>
         <servlet-class>com.fisher.fruit.servlets.Demo03Servlet</servlet-class>
@@ -46,7 +47,7 @@
         <servlet-name>Dome03Servlet</servlet-name>
         <url-pattern>/dome03</url-pattern>
     </servlet-mapping>
-    <!--演示Session保存作用域-->
+    演示Session保存作用域
     <servlet>
         <servlet-name>Dome04Servlet</servlet-name>
         <servlet-class>com.fisher.fruit.servlets.Demo04Servlet</servlet-class>
@@ -63,7 +64,9 @@
         <servlet-name>Dome05Servlet</servlet-name>
         <url-pattern>/demo05</url-pattern>
     </servlet-mapping>
+    -->
     <!--演示服务器内部转发与客户端重定向-->
+    <!--
     <servlet>
         <servlet-name>Demo06Servlet</servlet-name>
         <servlet-class>com.fisher.fruit.servlets.Demo06Servlet</servlet-class>
@@ -80,6 +83,7 @@
         <servlet-name>Demo07Servlet</servlet-name>
         <url-pattern>/demo07</url-pattern>
     </servlet-mapping>
+    -->
     <!--演示Thymeleaf-->
     <!--配置上下文参数-->
     <!--
@@ -92,11 +96,11 @@
         <param-value>.html</param-value>
     </context-param>
     -->
-    <context-param>
+    <context-param> <!--前缀-->
         <param-name>view-prefix</param-name>
         <param-value>/</param-value>
     </context-param>
-    <context-param>
+    <context-param> <!--后缀-->
         <param-name>view-suffix</param-name>
         <param-value>.html</param-value>
     </context-param>
