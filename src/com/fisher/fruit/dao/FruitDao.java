@@ -15,6 +15,10 @@ public interface FruitDao  {
 
     //根据fid获取特定的水果库存信息
     Fruit getFruitByFid(int fid);
+
+    //根据水果id修改水果库存信息
+    void updateFruit(Fruit fruit);
+
     /*
     //新增库存
     boolean addFruit(Fruit fruit);

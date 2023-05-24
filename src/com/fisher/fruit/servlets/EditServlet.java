@@ -9,7 +9,6 @@ import com.fisher.myssm.utils.StringUtil;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
@@ -32,6 +31,7 @@ public class EditServlet extends ViewBaseServlet {
             req.setAttribute("afruit", fruitByFid);
             //数据渲染
             super.processTemplate("edit",req,resp);
+
         }
     }
 }

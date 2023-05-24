@@ -26,11 +26,6 @@ public class IndexServlet extends ViewBaseServlet {
         List<Fruit> fruitList = fruitDao.getFruitList();
         HttpSession session = request.getSession();
         session.setAttribute("fruitList", fruitList);
-        //处理模板
-        //thymeleaf会将逻辑视图名称"index"对应到物理视图名称上
-        //逻辑视图名称：   index
-        //物理视图名称：   view-prefix + 逻辑视图名称 + view-suffix
-        //视图名称为：    /index.html
         super.processTemplate("index",request,response);
     }
 }
