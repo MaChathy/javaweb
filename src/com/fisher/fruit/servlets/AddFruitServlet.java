@@ -12,18 +12,19 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 /**
- * This program demonstrates se_projects
+ * 添加水果库存信息组件
  *
  * @author fisher
  * @version 1.0.1 2023/5/24 - 17:54
  */
-@WebServlet("addFruit.do")
+@WebServlet("/addFruit.do")
 public class AddFruitServlet extends ViewBaseServlet {
 
     private FruitDao fruitDao = new FruitDaoImpl();
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
         request.setCharacterEncoding("UTF-8");
 
         String fname = request.getParameter("fname");
