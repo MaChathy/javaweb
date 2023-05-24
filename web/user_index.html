@@ -1,33 +1,32 @@
-<!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<head>
-  <meta charset="utf-8">
-  <link rel="stylesheet" href="css/index.css">
-</head>
-<body>
-<div id="div_container">
-  <div id="div_fruit_list">
-    <p class="center f30">用户信息表</p>
-    <table id="tbl_fruit">
-      <tr>
-        <th class="w20">用户id</th>
-        <th class="w20">用户名</th>
-        <th class="w20">密码</th>
-        <th>昵称</th>
-      </tr>
-      <tr th:if="${#lists.isEmpty(session.userList)}">
-        <td colspan="4">用户为空。</td>
-      </tr>
-      <tr th:unless="${#lists.isEmpty(session.userList)}"
-          th:each="user : ${session.userList}">
-        <td th:text="${user.id}">--</td>
-        <td th:text="${user.account}">--</td>
-        <td th:text="${user.password}">--</td>
-        <td th:text="${user.nickname}">--</td>
-      </tr>
-    </table>
-  
-  </div>
-</div>
-</body>
+		<head>
+            <meta charset="utf-8">
+            <link rel="stylesheet" href="css/index.css">
+		</head>
+		<body>
+			<div id="div_container">
+			  <div id="div_fruit_list">
+			    <p class="center f30">用户信息表</p>
+				  <a href="add.html">添加用户</a>
+				  <table id="tbl_fruit">
+					    <tr>
+				            <th class="w20">用户id</th>
+				            <th class="w20">用户名</th>
+				            <th class="w20">密码</th>
+				            <th>昵称</th>
+				        </tr>
+					    <tr th:if="${#lists.isEmpty(session.userList)}">
+				            <td colspan="4">用户为空。</td>
+				        </tr>
+				        <tr th:unless="${#lists.isEmpty(session.userList)}"
+				          th:each="user : ${session.userList}">
+				            <td th:text="${user.id}">--</td>
+				            <td th:text="${user.account}">--</td>
+				            <td th:text="${user.password}">--</td>
+				            <td th:text="${user.nickname}">--</td>
+				        </tr>
+			        </table>
+			  </div>
+			</div>
+		</body>
 </html>

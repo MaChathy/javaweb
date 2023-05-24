@@ -7,6 +7,7 @@ import org.junit.Test;
 
 import javax.servlet.Servlet;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -18,32 +19,23 @@ import java.io.PrintWriter;
  * @author fisher
  * @version 1.0.1 2023/5/20 - 19:37
  */
+@WebServlet("/add.do")
 public class AddServlet extends HttpServlet {
 
-    /**
-     *
-     * @param request
-     * @param response
-     * @throws IOException
-     * @throws ServletException
-     */
     @Override
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws
             IOException, ServletException {
         //post方式下设置编码，防止中文乱码
         request.setCharacterEncoding("utf-8");
         response.setContentType("text/html;charset=UTF-8");
-        String fName = request.getParameter("fName");
-        int price =Integer.parseInt(request.getParameter("price"));
-        int fCount = Integer.parseInt(request.getParameter("fCount"));
-        String remark = request.getParameter("remark");
+        int id = Integer.parseInt(request.getParameter("id"));
+        String account = request.getParameter("account");
+        String PASSWORD = request.getParameter("password");
+        String nickname = request.getParameter("nickname");
         PrintWriter writer = response.getWriter();
 
-        System.out.println("名称："+fName+"\n价格："+price+"\n库存："+fCount+"\n备注："+remark);
+        System.out.println(id + " "+ account + " " + PASSWORD + " "+ nickname);
         writer.write("接收信息成功");
         writer.close();
-        //FruitDao fruitDao = new FruitDaoImpl();
-        //boolean flag = fruitDao.addFruit(new Fruit(0, fName, price, fCount, remark));
-        //System.out.println(flag?"添加成功":"添加失败");
     }
 }

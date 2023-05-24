@@ -18,7 +18,10 @@ public class Demo02Servlet extends HttpServlet {
 
     @Override
     protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        //获取request保存作用域保存的数据，并显示在网页页面上
-        response.getWriter().write("Hello"+request.getParameter("username"));
+        //1.获取request保存作用域保存的数据，并显示在网页页面上
+//        Object username = request.getAttribute("username");
+//        response.getWriter().write("Hello "+ username);
+        //2.获取session保存作用域中的数据，并显示在页面上
+        response.getWriter().write("Hello " + request.getSession().getAttribute("username"));
     }
 }

@@ -8,7 +8,7 @@ package com.fisher.user.pojo;
 public class User {
     private int id;
     private String account;
-    private String password;
+    private String PASSWORD;
     private String nickname;
 
     public User() {}
@@ -16,7 +16,7 @@ public class User {
     public User(int id, String account, String password, String nickname) {
         this.id = id;
         this.account = account;
-        this.password = password;
+        this.PASSWORD = password;
         this.nickname = nickname;
     }
 
@@ -33,11 +33,11 @@ public class User {
     }
 
     public void setPassword(String password) {
-        this.password = password;
+        this.PASSWORD = password;
     }
 
     public String getPassword() {
-        return password;
+        return PASSWORD;
     }
 
     public void setNickname(String nickname) {
@@ -54,7 +54,7 @@ public class User {
         return "User{" +
                 "id=" + id +
                 ", account='" + account + '\'' +
-                ", password='" + password + '\'' +
+                ", password='" + PASSWORD + '\'' +
                 ", nickname='" + nickname + '\'' +
                 '}';
     }

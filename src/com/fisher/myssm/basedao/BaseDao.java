@@ -8,6 +8,7 @@ import java.lang.reflect.Type;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Properties;
 
 /**
  * 封装Dao层数据库重复代码
@@ -21,7 +22,9 @@ public abstract class BaseDao<T> {
 
 
     public final String DRIVER = "com.mysql.cj.jdbc.Driver" ;
-    public final String URL = "jdbc:mysql://localhost:3306/atguigu?" +
+//    public final String URL = "jdbc:mysql://localhost:3306/atguigu?" +
+//            "useUnicode=true&characterEncoding=utf-8&useSSL=false";
+    public final String URL = "jdbc:mysql://localhost:3306/fruitdb?" +
             "useUnicode=true&characterEncoding=utf-8&useSSL=false";
     public final String USER = "root";
     public final String PWD = "547547" ;
@@ -176,6 +179,7 @@ public abstract class BaseDao<T> {
             int columnCount = rsmd.getColumnCount();
             //6.解析rs
             if(rs.next()){
+                @SuppressWarnings("unchecked")
                 T entity = (T)entityClass.newInstance();
 
                 for(int i = 0 ; i<columnCount;i++){
