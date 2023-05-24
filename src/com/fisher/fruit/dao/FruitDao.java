@@ -13,6 +13,12 @@ public interface FruitDao  {
     //查询库存列表
     List<Fruit> getFruitList();
 
+    //分页显示库存,获取指定页码的库存信息，每页显示5条
+    List<Fruit> getFruitList(Integer pageNumber);
+
+    //获取总页数
+    int getFruitCount();
+
     //根据fid获取特定的水果库存信息
     Fruit getFruitByFid(int fid);
 

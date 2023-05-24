@@ -4,6 +4,7 @@ import com.fisher.fruit.dao.FruitDao;
 import com.fisher.myssm.basedao.BaseDao;
 import com.fisher.fruit.pojo.Fruit;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -16,6 +17,16 @@ public class FruitDaoImpl extends BaseDao<Fruit> implements FruitDao {
     @Override
     public List<Fruit> getFruitList() {
         return super.executeQuery("select * from t_fruit");
+    }
+
+    @Override
+    public List<Fruit> getFruitList(Integer pageNumber) {
+        return super.executeQuery("select * from t_fruit limit ? , 5 ",5*(pageNumber-1));
+    }
+    @Override
+    public int getFruitCount() {
+        List<Fruit> list = super.executeQuery("select * from t_fruit");
+        return list.size();
     }
 
     @Override
