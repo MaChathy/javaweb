@@ -25,3 +25,5 @@ thymeleaf-dev
 
 
     4) application  : 整个应用范围
+
+![img_6.png](img_6.png)
