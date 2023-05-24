@@ -1,6 +1,7 @@
 package com.fisher.fruit.servlets;
 
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -12,6 +13,7 @@ import java.io.IOException;
  * @author fisher
  * @version 1.0.1 2023/5/24 - 13:39
  */
+@WebServlet("/demo04")
 public class Demo04Servlet extends HttpServlet {
     @Override
     protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {

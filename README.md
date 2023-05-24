@@ -27,3 +27,10 @@ thymeleaf-dev
     4) application  : 整个应用范围
 
 ![img_6.png](img_6.png)
+
+![img_7.png](img_7.png)
+
+2.路径问题
+    
+    1)相对路径
+    2)绝对路径
