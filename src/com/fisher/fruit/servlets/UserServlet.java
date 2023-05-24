@@ -3,9 +3,7 @@ package com.fisher.fruit.servlets;
 import com.fisher.myssm.myspringmvc.ViewBaseServlet;
 import com.fisher.user.dao.UserDao;
 import com.fisher.user.dao.impl.UserDaoImpl;
-import com.fisher.user.pojo.User;
 
-import javax.jws.WebService;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
