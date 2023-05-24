@@ -9,6 +9,10 @@
 			<div id="div_fruit_list">
 				<p class="center f30">水果库存信息表</p>
 				<div style="width: 69.5%;margin-left: 10%;margin-bottom: 9px;text-align: right">
+					<form th:action="@{/search.do}" method="post">
+						请输入查询关键字：<input type="text" name="keyword" th:value="${keyword}"/>
+						<input type="submit" value="查询"/>
+					</form>
 					<a th:href="@{/addfruit.html}" >添加新库存</a>
 				</div>
 				<table id="tbl_fruit">
