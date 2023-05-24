@@ -11,13 +11,19 @@ import java.util.List;
  */
 public interface FruitDao  {
     //查询库存列表
-    List<Fruit> getFruitList();
+//    List<Fruit> getFruitLists();
 
     //分页显示库存,获取指定页码的库存信息，每页显示5条
-    List<Fruit> getFruitList(Integer pageNumber);
+//    List<Fruit> getFruitList(Integer pageNumber);
 
-    //获取总页数
-    int getFruitCount();
+    //关键字查询功能
+    List<Fruit> getFruitList(String keyword,Integer pageNo);
+
+    //获取水果库存总数
+//    int getFruitCount();
+
+    //获取特定水果库存总数
+    int getFruitCount(String keyword);
 
     //根据fid获取特定的水果库存信息
     Fruit getFruitByFid(int fid);
@@ -30,6 +36,8 @@ public interface FruitDao  {
 
     //添加水果库存信息
     void addFruit(Fruit fruit);
+
+
 
     /*
     //新增库存

@@ -4,7 +4,6 @@ import com.fisher.fruit.dao.FruitDao;
 import com.fisher.myssm.basedao.BaseDao;
 import com.fisher.fruit.pojo.Fruit;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -14,19 +13,32 @@ import java.util.List;
  */
 public class FruitDaoImpl extends BaseDao<Fruit> implements FruitDao {
 
+//    @Override
+//    public List<Fruit> getFruitList() {
+//        return super.executeQuery("select * from t_fruit");
+//    }
+
+//    @Override
+//    public List<Fruit> getFruitList(Integer pageNumber) {
+//        return super.executeQuery("select * from t_fruit limit ? , 5 ",5*(pageNumber-1));
+//    }
+//    @Override
+//    public int getFruitCount() {
+//        String sql = "select * from t_fruit ";
+//        List<Fruit> list = super.executeQuery(sql);
+//        return list.size();
+//    }
+
     @Override
-    public List<Fruit> getFruitList() {
-        return super.executeQuery("select * from t_fruit");
+    public int getFruitCount(String keyword) {
+        String sql = "select * from t_fruit where fname like ? or remark like ? ";
+        return super.executeQuery(sql,"%"+keyword+"%","%"+keyword+"%").size();
     }
 
     @Override
-    public List<Fruit> getFruitList(Integer pageNumber) {
-        return super.executeQuery("select * from t_fruit limit ? , 5 ",5*(pageNumber-1));
-    }
-    @Override
-    public int getFruitCount() {
-        List<Fruit> list = super.executeQuery("select * from t_fruit");
-        return list.size();
+    public List<Fruit> getFruitList(String keyword,Integer pageNo) {
+        String sql = "select * from t_fruit where fname like ? or remark like ? limit ? , 5";
+        return super.executeQuery(sql,"%"+keyword+"%","%"+keyword+"%",(pageNo-1)*5);
     }
 
     @Override
