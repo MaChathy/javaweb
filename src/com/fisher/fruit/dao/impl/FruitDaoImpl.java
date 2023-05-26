@@ -13,22 +13,6 @@ import java.util.List;
  */
 public class FruitDaoImpl extends BaseDao<Fruit> implements FruitDao {
 
-//    @Override
-//    public List<Fruit> getFruitList() {
-//        return super.executeQuery("select * from t_fruit");
-//    }
-
-//    @Override
-//    public List<Fruit> getFruitList(Integer pageNumber) {
-//        return super.executeQuery("select * from t_fruit limit ? , 5 ",5*(pageNumber-1));
-//    }
-//    @Override
-//    public int getFruitCount() {
-//        String sql = "select * from t_fruit ";
-//        List<Fruit> list = super.executeQuery(sql);
-//        return list.size();
-//    }
-
     @Override
     public int getFruitCount(String keyword) {
         String sql = "select * from t_fruit where fname like ? or remark like ? ";

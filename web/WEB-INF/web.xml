@@ -78,14 +78,15 @@
         <url-pattern>/demo06</url-pattern>
     </servlet-mapping>
     <servlet>
-        <servlet-name>Demo07Servlet</servlet-name>
-        <servlet-class>com.fisher.fruit.servlets.Demo07Servlet</servlet-class>
+        <servlet-name>Portal</servlet-name>
+        <servlet-class>com.fisher.servlet.PortalServlet</servlet-class>
     </servlet>
     <servlet-mapping>
-        <servlet-name>Demo07Servlet</servlet-name>
-        <url-pattern>/demo07</url-pattern>
+        <servlet-name>Portal</servlet-name>
+        <url-pattern>/index</url-pattern>
     </servlet-mapping>
     -->
+
     <!--演示Thymeleaf-->
     <!--配置上下文参数-->
     <!--

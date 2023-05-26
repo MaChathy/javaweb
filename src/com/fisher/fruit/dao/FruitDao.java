@@ -10,17 +10,9 @@ import java.util.List;
  * @version 1.0.1 2023/5/20 - 20:27
  */
 public interface FruitDao  {
-    //查询库存列表
-//    List<Fruit> getFruitLists();
-
-    //分页显示库存,获取指定页码的库存信息，每页显示5条
-//    List<Fruit> getFruitList(Integer pageNumber);
 
     //关键字查询功能
     List<Fruit> getFruitList(String keyword,Integer pageNo);
-
-    //获取水果库存总数
-//    int getFruitCount();
 
     //获取特定水果库存总数
     int getFruitCount(String keyword);
