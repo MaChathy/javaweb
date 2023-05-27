@@ -3,10 +3,9 @@ package com.fisher.fruit.controllers;
 import com.fisher.fruit.dao.FruitDao;
 import com.fisher.fruit.dao.impl.FruitDaoImpl;
 import com.fisher.fruit.pojo.Fruit;
-import com.fisher.myssm.myspringmvc.ViewBaseServlet;
+import com.fisher.myssm.myspringmvc.ViewBaseServlet1;
 import com.fisher.myssm.utils.StringUtil;
 
-import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -18,21 +17,16 @@ import java.util.List;
  * FruitController组件，重写service方法,不再是Servlet组件
  *      包括：增、删、改、查
  *
- * 之前FruitServlet是一个servlet组件，则init()方法一定会被调用
+ * v1.4.1 之前FruitServlet是一个servlet组件，则init()方法一定会被调用
  * 现在FruitServlet不是一个servlet组件，是一个Controller组件，则init()方法不会被调用，则super.init()方法不会被调用
+ * v1.5.1
  * @author fisher
  * @version 1.4.1 2023/5/27 - 14:52
  */
-public class FruitController extends ViewBaseServlet {
+public class FruitController extends ViewBaseServlet1 {
 
     private FruitDao fruitDao = new FruitDaoImpl();
 
-    private ServletContext servletContext ;
-
-    public void setServletContext(ServletContext servletContext) throws ServletException {
-        this.servletContext = servletContext;
-        super.init(servletContext);
-    }
     /*
     @Override
     protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -140,7 +134,7 @@ public class FruitController extends ViewBaseServlet {
     }
 
     //更新水果信息
-    protected void updateFruit(HttpServletRequest request, HttpServletResponse response)
+    protected String updateFruit(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         //1.获取表单信息
         int fid = Integer.parseInt(request.getParameter("fid"));
@@ -150,11 +144,9 @@ public class FruitController extends ViewBaseServlet {
         String remark = request.getParameter("remark");
         //2.执行更新
         fruitDao.updateFruit(new Fruit(fid,fname,price,fcount,remark));
-        //3.资源跳转，返回index页面
-        //super.processTemplate("index",request,response);
-        //request.getResponseDispatcher("index.html").forward(request,response);
-        //客户端重定向
-        response.sendRedirect("fruit.do");
+        //3.资源跳转，返回index页面;客户端重定向
+        //response.sendRedirect("fruit.do");
+        return "redirect:fruit.do";
     }
 
     //删除水果信息

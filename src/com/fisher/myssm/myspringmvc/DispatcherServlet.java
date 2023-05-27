@@ -7,7 +7,6 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
-import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -71,16 +70,11 @@ public class DispatcherServlet extends ViewBaseServlet{
 
                     Object beanObject = controllerBeanClass.newInstance();
 
-                    Method setServletContext = controllerBeanClass.getDeclaredMethod("setServletContext", ServletContext.class);
-
-                    setServletContext.setAccessible(true);
-                    setServletContext.invoke(beanObject,this.getServletContext());
-
                     beanMap.put(beanId, beanObject);
                 }
             }
         } catch (ParserConfigurationException | ClassNotFoundException | IllegalAccessException | InstantiationException
-                | SAXException | IOException | NoSuchMethodException | InvocationTargetException e) {
+                | SAXException | IOException e) {
             e.printStackTrace();
         }
     }
@@ -108,7 +102,9 @@ public class DispatcherServlet extends ViewBaseServlet{
             methods = controllerBeanObject.getClass().getDeclaredMethod(method,HttpServletRequest.class,HttpServletResponse.class);
             if(methods != null){
                 methods.setAccessible(true);
-                methods.invoke(controllerBeanObject, request, response);
+                Object methodReturnObj = methods.invoke(controllerBeanObject, request, response);
+                String methodReturnStr = (String) methodReturnObj;
+                //视图处理
             }else
                 throw new RuntimeException("method:" + method +"方法不存在！method值非法。");
         } catch (IllegalAccessException | InvocationTargetException | NoSuchMethodException e) {
