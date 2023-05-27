@@ -48,7 +48,6 @@ public class DispatcherServlet extends ViewBaseServlet{
     public DispatcherServlet() throws IOException, SAXException { }
 
     public void init(){
-        System.out.println("init-config........");
         try {
             //获取类加载器
             InputStream inputStream = getClass().getClassLoader().getResourceAsStream("applicationContext.xml");
