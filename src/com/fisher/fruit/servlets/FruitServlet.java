@@ -30,9 +30,6 @@ public class FruitServlet extends ViewBaseServlet {
 
     @Override
     protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        //设置编码
-        request.setCharacterEncoding("UTF-8");
-        response.setCharacterEncoding("UTF-8");
 
         //获取客户端需求
         String method = request.getParameter("method");

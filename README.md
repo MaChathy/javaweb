@@ -60,3 +60,13 @@ thymeleaf-dev
 改进业务逻辑_02 (mvc reflect)
 
     通过反射(getClass().getDeclaredMethods())
+
+改进业务逻辑_03 (mvc dispatcherServlet(调度))
+![img_11.png](img_11.png)
+    
+    为FruitServlet增加调度服务，判断是否需要使用FruitServlet
+    
+    若url为http://localhost:8080/fruit.do
+    则ServletPath为:/fruit.do
+    
+    
