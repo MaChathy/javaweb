@@ -16,10 +16,10 @@ import java.lang.reflect.Method;
 import java.util.List;
 
 /**
- * FruitServlet组件，重写service方法
+ * FruitController组件，重写service方法,不再是Servlet组件
  *      包括：增、删、改、查
  * @author fisher
- * @version 1.3.1 2023/5/27 - 14:52
+ * @version 1.4.1 2023/5/27 - 14:52
  */
 public class FruitController extends ViewBaseServlet {
 
