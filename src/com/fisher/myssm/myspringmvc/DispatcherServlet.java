@@ -100,7 +100,6 @@ public class DispatcherServlet extends ViewBaseServlet1{
             method = "index";
         }
         //获取当前类中对应的方法（method）
-//        Method methods = null;
         try {
             //通过反射调用方法
             Method[] methods = controllerBeanObject.getClass().getDeclaredMethods();
@@ -115,21 +114,19 @@ public class DispatcherServlet extends ViewBaseServlet1{
                         Parameter parameter = parameters[i];
                         String parameterName = parameter.getName();
                         //获取参数值，若参数名是request、response、session。则不通过请求获取参数
-                        switch (parameterName) {
-                            case "request":
-                                parameterValues[i] = request;
-                                break;
-                            case "response":
-                                parameterValues[i] = response;
-                                break;
-                            case "session":
-                                parameterValues[i] = request.getSession();
-                                break;
-                            default:
-                                //从请求中获取参数值
-                                String parameterValue = request.getParameter(parameterName);
-                                parameterValues[i] = parameterValue;
-                                break;
+                        if(parameterName.equals("request")){
+                            parameterValues[i] = request;
+                        }else if(parameterName.equals("response")){
+                            parameterValues[i] = response;
+                        }else {
+                            //从请求中获取参数值
+                            String parameterValue = request.getParameter(parameterName);
+                            String typeName = parameter.getType().getName();
+                            Object parameterObject = parameterValue;
+                            if ("java.lang.Integer".equals(typeName) && parameterValue != null) {
+                                parameterObject = Integer.parseInt(parameterValue);
+                            }
+                            parameterValues[i] = parameterObject;
                         }
                     }
                     //2、controller组件中的方法调用
@@ -140,9 +137,8 @@ public class DispatcherServlet extends ViewBaseServlet1{
                     if(methodReturnStr.startsWith("redirect:")){
                         String redirectStr = methodReturnStr.substring("redirect:".length(), methodReturnStr.length());
                         response.sendRedirect(redirectStr);
+                    }
                 }
-            }
-//            methods = controllerBeanObject.getClass().getDeclaredMethod(method,HttpServletRequest.class);
             }
         } catch (IllegalAccessException | InvocationTargetException e) {
             e.printStackTrace();

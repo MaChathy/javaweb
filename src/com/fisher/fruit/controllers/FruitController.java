@@ -28,7 +28,8 @@ public class FruitController{
     private String index(String operate, String keyword,Integer pageNo,HttpServletRequest request) {
         HttpSession session = request.getSession();
 
-        pageNo = pageNo == null ? 1 : pageNo;
+        if(pageNo == null)
+            pageNo = 1;
 
         if (StringUtil.isNotEmpty(operate) && "search".equals(operate)){
             //此时，pageNo应还原为1，keyword应从session作用域中获取
@@ -55,7 +56,7 @@ public class FruitController{
         session.setAttribute("fruitList", fruitList);
         int pageCount = (fruitDao.getFruitCount(keyword)+4)/5;
         session.setAttribute("pageCount", pageCount);
-        return "index";
+        return "indexFruit";
     }
 
     //添加水果库存信息方法
@@ -70,7 +71,7 @@ public class FruitController{
         if(fid != null){
             Fruit fruitByFid = fruitDao.getFruitByFid(fid);
             request.setAttribute("afruit", fruitByFid);
-            return "edit";
+            return "editFruit";
         }
         return "error";
     }
