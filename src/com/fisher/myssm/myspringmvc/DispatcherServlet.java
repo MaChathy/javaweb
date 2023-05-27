@@ -24,10 +24,10 @@ import java.util.Map;
 /**
  * 调度器--处理所有以".do"结尾的请求
  * @author fisher
- * @version 1.0.1 2023/5/27 - 17:08
+ * @version 1.1.1 2023/5/28 00:30:36
  */
 @WebServlet("*.do")
-public class DispatcherServlet extends ViewBaseServlet{
+public class DispatcherServlet extends ViewBaseServlet1{
 
     /*
       TODO:
@@ -46,7 +46,9 @@ public class DispatcherServlet extends ViewBaseServlet{
      */
     public DispatcherServlet() throws IOException, SAXException { }
 
-    public void init(){
+    public void init() throws ServletException {
+        super.init();
+        //解析applicationContext.xml 配置文件
         try {
             //获取类加载器
             InputStream inputStream = getClass().getClassLoader().getResourceAsStream("applicationContext.xml");
@@ -99,12 +101,19 @@ public class DispatcherServlet extends ViewBaseServlet{
         Method methods = null;
         try {
             //通过反射调用方法
-            methods = controllerBeanObject.getClass().getDeclaredMethod(method,HttpServletRequest.class,HttpServletResponse.class);
+            methods = controllerBeanObject.getClass().getDeclaredMethod(method,HttpServletRequest.class);
             if(methods != null){
+                //2、controller组件中的方法调用
                 methods.setAccessible(true);
-                Object methodReturnObj = methods.invoke(controllerBeanObject, request, response);
+                Object methodReturnObj = methods.invoke(controllerBeanObject, request);
+                //3、视图处理
                 String methodReturnStr = (String) methodReturnObj;
-                //视图处理
+                if(methodReturnStr.startsWith("redirect:")){
+                    String redirectStr = methodReturnStr.substring("redirect:".length(), methodReturnStr.length());
+                    response.sendRedirect(redirectStr);
+                }else {
+                    super.processTemplate(methodReturnStr, request, response);
+                }
             }else
                 throw new RuntimeException("method:" + method +"方法不存在！method值非法。");
         } catch (IllegalAccessException | InvocationTargetException | NoSuchMethodException e) {

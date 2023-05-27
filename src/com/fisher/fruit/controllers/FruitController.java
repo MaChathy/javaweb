@@ -3,14 +3,10 @@ package com.fisher.fruit.controllers;
 import com.fisher.fruit.dao.FruitDao;
 import com.fisher.fruit.dao.impl.FruitDaoImpl;
 import com.fisher.fruit.pojo.Fruit;
-import com.fisher.myssm.myspringmvc.ViewBaseServlet1;
 import com.fisher.myssm.utils.StringUtil;
 
-import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import java.io.IOException;
 import java.util.List;
 
 /**
@@ -18,12 +14,12 @@ import java.util.List;
  *      包括：增、删、改、查
  *
  * v1.4.1 之前FruitServlet是一个servlet组件，则init()方法一定会被调用
- * 现在FruitServlet不是一个servlet组件，是一个Controller组件，则init()方法不会被调用，则super.init()方法不会被调用
- * v1.5.1
+ *        现在FruitServlet不是一个servlet组件，是一个Controller组件，则init()方法不会被调用，则super.init()方法不会被调用
+ * v1.5.1 FruitServlet不再继承ViewBaseServlet，视图处理
  * @author fisher
- * @version 1.4.1 2023/5/27 - 14:52
+ * @version 1.5.1 2023/5/27 - 14:52
  */
-public class FruitController extends ViewBaseServlet1 {
+public class FruitController{
 
     private FruitDao fruitDao = new FruitDaoImpl();
 
@@ -60,8 +56,7 @@ public class FruitController extends ViewBaseServlet1 {
      */
 
     //显示页面方法
-    private void index(HttpServletRequest request, HttpServletResponse response)
-            throws java.io.IOException {
+    private String index(HttpServletRequest request) {
         HttpSession session = request.getSession();
         //页码初始值为1
         int pageNo = 1;
@@ -101,12 +96,12 @@ public class FruitController extends ViewBaseServlet1 {
         session.setAttribute("fruitList", fruitList);
         int pageCount = (fruitDao.getFruitCount(keyword)+4)/5;
         session.setAttribute("pageCount", pageCount);
-        super.processTemplate("index",request,response);
+//        super.processTemplate("index",request,response);
+        return "index";
     }
 
     //添加水果库存信息方法
-    private void addFruit(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+    private String addFruit(HttpServletRequest request){
 
         String fname = request.getParameter("fname");
         int price = Integer.parseInt(request.getParameter("price"));
@@ -116,26 +111,26 @@ public class FruitController extends ViewBaseServlet1 {
         Fruit fruit = new Fruit(0,fname,price,fcount,remark);
         fruitDao.addFruit(fruit);
 
-        response.sendRedirect("fruit.do");
+//        response.sendRedirect("fruit.do");
+        return "redirect:fruit.do";
     }
 
     //编辑水果库存信息
-    private void editFruit(HttpServletRequest req, HttpServletResponse resp)
-            throws ServletException, IOException {
+    private String editFruit(HttpServletRequest req) {
         String fidStr = req.getParameter("fid");
         if(StringUtil.isNotEmpty(fidStr)){
             int fid = Integer.parseInt(fidStr);
             Fruit fruitByFid = fruitDao.getFruitByFid(fid);
             req.setAttribute("afruit", fruitByFid);
             //数据渲染
-            super.processTemplate("edit",req,resp);
-
+//            super.processTemplate("edit",req,resp);
+            return "edit";
         }
+        return "error";
     }
 
     //更新水果信息
-    protected String updateFruit(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+    protected String updateFruit(HttpServletRequest request) {
         //1.获取表单信息
         int fid = Integer.parseInt(request.getParameter("fid"));
         String fname = request.getParameter("fname");
@@ -150,14 +145,14 @@ public class FruitController extends ViewBaseServlet1 {
     }
 
     //删除水果信息
-    private void delFruit(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        int fid = Integer.parseInt(request.getParameter("fid"));
+    private String delFruit(HttpServletRequest request) {
+        int fid = Integer.parseInt(StringUtil.isNotEmpty(request.getParameter("fid"))? request.getParameter("fid"):"-1");
         fruitDao.delFruit(fid);
         //服务器内部转发
 //        super.processTemplate("fruit.do").forward(request,response);
         //客户端重定向
-        response.sendRedirect("fruit.do");
+//        response.sendRedirect("fruit.do");
+        return "redirect:fruit.do";
     }
 
 }
