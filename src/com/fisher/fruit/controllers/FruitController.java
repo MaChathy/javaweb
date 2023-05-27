@@ -6,18 +6,20 @@ import com.fisher.fruit.pojo.Fruit;
 import com.fisher.myssm.myspringmvc.ViewBaseServlet;
 import com.fisher.myssm.utils.StringUtil;
 
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
-import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Method;
 import java.util.List;
 
 /**
  * FruitController组件，重写service方法,不再是Servlet组件
  *      包括：增、删、改、查
+ *
+ * 之前FruitServlet是一个servlet组件，则init()方法一定会被调用
+ * 现在FruitServlet不是一个servlet组件，是一个Controller组件，则init()方法不会被调用，则super.init()方法不会被调用
  * @author fisher
  * @version 1.4.1 2023/5/27 - 14:52
  */
@@ -25,7 +27,13 @@ public class FruitController extends ViewBaseServlet {
 
     private FruitDao fruitDao = new FruitDaoImpl();
 
+    private ServletContext servletContext ;
 
+    public void setServletContext(ServletContext servletContext) throws ServletException {
+        this.servletContext = servletContext;
+        super.init(servletContext);
+    }
+    /*
     @Override
     protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
@@ -55,6 +63,7 @@ public class FruitController extends ViewBaseServlet {
         if (!hasMethod)
             throw new RuntimeException("Method值:" + method+"非法！");
     }
+     */
 
     //显示页面方法
     private void index(HttpServletRequest request, HttpServletResponse response)

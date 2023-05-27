@@ -2,7 +2,7 @@
 
 <beans>
     <!-- 下面标签的作用：若ServletPath中涉及的名字对应的是fruit，则就用FruitController处理 -->
-    <bean id="hello" class="com.fisher.fruit.controllers.FruitController"/>
+    <bean id="fruit" class="com.fisher.fruit.controllers.FruitController"/>
 </beans>
 
 <!--

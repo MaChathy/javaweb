@@ -7,9 +7,9 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.xml.parsers.DocumentBuilder;
@@ -28,7 +28,7 @@ import java.util.Map;
  * @version 1.0.1 2023/5/27 - 17:08
  */
 @WebServlet("*.do")
-public class DispatcherServlet extends HttpServlet {
+public class DispatcherServlet extends ViewBaseServlet{
 
     /*
       TODO:
@@ -45,7 +45,10 @@ public class DispatcherServlet extends HttpServlet {
      * Constructor
      * 在构造其中解析applicationContext.xml 配置文件
      */
-    public DispatcherServlet() throws IOException, SAXException {
+    public DispatcherServlet() throws IOException, SAXException { }
+
+    public void init(){
+        System.out.println("init-config........");
         try {
             //获取类加载器
             InputStream inputStream = getClass().getClassLoader().getResourceAsStream("applicationContext.xml");
@@ -64,13 +67,21 @@ public class DispatcherServlet extends HttpServlet {
                     Element beanElement = (Element) beanNode;
                     String beanId = beanElement.getAttribute("id");
                     String className = beanElement.getAttribute("class");
-                    Object beanObject = Class.forName(className).newInstance();
+
+                    Class<?> controllerBeanClass = Class.forName(className);
+
+                    Object beanObject = controllerBeanClass.newInstance();
+
+                    Method setServletContext = controllerBeanClass.getDeclaredMethod("setServletContext", ServletContext.class);
+
+                    setServletContext.setAccessible(true);
+                    setServletContext.invoke(beanObject,this.getServletContext());
 
                     beanMap.put(beanId, beanObject);
                 }
             }
-        } catch (ParserConfigurationException | ClassNotFoundException |
-                IllegalAccessException | InstantiationException e) {
+        } catch (ParserConfigurationException | ClassNotFoundException | IllegalAccessException | InstantiationException
+                | SAXException | IOException | NoSuchMethodException | InvocationTargetException e) {
             e.printStackTrace();
         }
     }
