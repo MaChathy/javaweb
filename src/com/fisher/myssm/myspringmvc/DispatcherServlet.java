@@ -25,6 +25,7 @@ public class DispatcherServlet extends ViewBaseServlet{
                 1.获取请求路径  getServletPath(); e.g. /fruit.do
                 2.去除请求后缀，将请求路径拆分为请求名 e.g. /fruit.do -> fruit
                 3.根据请求名，获取相应的Controller，e.g. fruit -> fruitController
+                4.创建配置文件，说明对用关系
                 4.获取请求参数
          */
         int lastDotIndex = request.getServletPath().lastIndexOf(".do");

@@ -69,4 +69,16 @@ thymeleaf-dev
     若url为http://localhost:8080/fruit.do
     则ServletPath为:/fruit.do
     
+扩展：
+
+XML可扩展的标记语言
     
+    xml:可扩展的标记语言
+    html:超文本标记语言
+
+    html是xml的一个子集
+
+    xml包含三个部分：
+    1)XML声明
+    2)DTD(Document Type Definition) 文档类型定义
+    3)XML正文

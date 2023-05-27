@@ -1,7 +1,5 @@
 package com.fisher.fruit.view;
 
-import com.fisher.fruit.controller.Menu;
-
 /**
  * This program demonstrates se_projects
  *

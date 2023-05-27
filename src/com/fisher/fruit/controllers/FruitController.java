@@ -1,4 +1,4 @@
-package com.fisher.fruit.servlets;
+package com.fisher.fruit.controllers;
 
 import com.fisher.fruit.dao.FruitDao;
 import com.fisher.fruit.dao.impl.FruitDaoImpl;
@@ -7,7 +7,6 @@ import com.fisher.myssm.myspringmvc.ViewBaseServlet;
 import com.fisher.myssm.utils.StringUtil;
 
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -22,8 +21,7 @@ import java.util.List;
  * @author fisher
  * @version 1.3.1 2023/5/27 - 14:52
  */
-@WebServlet("/fruit.do")
-public class FruitServlet extends ViewBaseServlet {
+public class FruitController extends ViewBaseServlet {
 
     private FruitDao fruitDao = new FruitDaoImpl();
 
