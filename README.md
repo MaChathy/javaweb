@@ -47,3 +47,12 @@ thymeleaf-dev
         <base href="http://localhost:8080/webrrestart/" />
         作用当前页面上的所有路径都以href的值为基础。
     thymeleaf中 th:href="@{}"
+
+
+当前业务逻辑：
+
+![img_9.png](img_9.png)
+
+改进业务逻辑：
+
+![img_10.png](img_10.png)
