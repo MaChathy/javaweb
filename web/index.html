@@ -9,7 +9,7 @@
 			<div id="div_fruit_list">
 				<p class="center f30">水果库存信息表</p>
 				<div style="width: 70%;margin-left: 10%;margin-bottom: 9px;text-align: right">
-					<form th:action="@{/index}" method="post" style = "float: left;border:0px solid;text-align: left;margin-left: 15%">
+					<form th:action="@{/fruit.do}" method="post" style = "text-align: left;margin-left: 15%">
 						<!--隐藏域 ；将表单要实现的功能转发给服务端-->
 						<input type="hidden" name="operate" value="search"/>
 						请输入查询关键字：
@@ -25,17 +25,15 @@
 						<th class="w20">库存</th>
 						<th>操作</th>
 					</tr>
-					<tr th:if="${#lists.isEmpty(session.fruitList)}">
+					<tr th:if="${#lists.isEmpty(session.fruitList)}" >
 						<td colspan="4">库存为空。</td>
 					</tr>
-					<tr th:unless="${#lists.isEmpty(session.fruitList)}"
-						th:each="fruit : ${session.fruitList}">
-						<td><a th:href="${'/edit.do?fid='+fruit.fid}" th:text="${fruit.fname}">--</a></td>
-						<td><a th:href="@{/edit.do(fid=${fruit.fid})}" th:text="${fruit.fname}">--</a></td>
+					<tr th:unless="${#lists.isEmpty(session.fruitList)}" th:each="fruit : ${session.fruitList}">>
+<!--						<td><a th:href="${'/fruit.do?fid='+fruit.fid+'&method=editFruit'}" th:text="${fruit.fname}">&#45;&#45;</a></td>-->
+						<td><a th:href="@{/fruit.do(fid=${fruit.fid},method='editFruit')}" th:text="${fruit.fname}">--</a></td>
 						<td th:text="${fruit.price}">--</td>
 						<td th:text="${fruit.fcount}">--</td>
 						<td><img src="imgs/del.jpg" class="delImg" th:onclick="|delFruit(${fruit.fid})|" /></td>
-						<!--<td><img src="imgs/del.jpg" class="delImg" th:onclick="'delFruit('+${fruit.fid}+')'" /></td>-->
 					</tr>
 				</table>
 				<form action="/index" method="get">

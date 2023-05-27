@@ -40,18 +40,20 @@ public class FruitServlet extends ViewBaseServlet {
             case "index":
                 index(request, response);
                 break;
-            case "addFruit.do":
+            case "addFruit":
                 addFruit(request, response);
                 break;
-            case "edit.do":
+            case "editFruit":
                 editFruit(request, response);
                 break;
-            case "del.do":
+            case "delFruit":
                 delFruit(request, response);
                 break;
-            case "update.do":
+            case "updateFruit":
                 updateFruit(request, response);
                 break;
+            default:
+                throw new RuntimeException("method值非法！");
         }
 
     }
@@ -59,16 +61,12 @@ public class FruitServlet extends ViewBaseServlet {
     private void index(HttpServletRequest request, HttpServletResponse response)
             throws java.io.IOException {
         HttpSession session = request.getSession();
-
         //页码初始值为1
         int pageNo = 1;
-
         //获取表单操作
         String operate = request.getParameter("operate");
-
         //若operate不为null,则operate的值为查询表单按钮
         String keyword = null;
-
         if (StringUtil.isNotEmpty(operate) && "search".equals(operate)){
             //此时，pageNo应还原为1，keyword应从session作用域中获取
             keyword = request.getParameter("keyword");
@@ -79,7 +77,6 @@ public class FruitServlet extends ViewBaseServlet {
             }
             //将keyword(覆盖)保存到session作用域中
             session.setAttribute("keyword",keyword);
-
         }else{
             //此处非表单查询发送来的请求
             //获取页码
@@ -97,19 +94,17 @@ public class FruitServlet extends ViewBaseServlet {
         }
         //更新当前页码的值
         session.setAttribute("pageNo",pageNo);
-
         FruitDao fruitDao = new FruitDaoImpl();
         List<Fruit> fruitList = fruitDao.getFruitList(keyword,pageNo);
-
         session.setAttribute("fruitList", fruitList);
-
         int pageCount = (fruitDao.getFruitCount(keyword)+4)/5;
         session.setAttribute("pageCount", pageCount);
-
         super.processTemplate("index",request,response);
     }
+
     //添加水果库存信息方法
-    private void addFruit(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    private void addFruit(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
 
         String fname = request.getParameter("fname");
         int price = Integer.parseInt(request.getParameter("price"));
@@ -119,11 +114,12 @@ public class FruitServlet extends ViewBaseServlet {
         Fruit fruit = new Fruit(0,fname,price,fcount,remark);
         fruitDao.addFruit(fruit);
 
-        response.sendRedirect("index");
+        response.sendRedirect("fruit.do");
     }
 
     //编辑水果库存信息
-    private void editFruit(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    private void editFruit(HttpServletRequest req, HttpServletResponse resp)
+            throws ServletException, IOException {
         String fidStr = req.getParameter("fid");
         if(StringUtil.isNotEmpty(fidStr)){
             int fid = Integer.parseInt(fidStr);
@@ -134,8 +130,10 @@ public class FruitServlet extends ViewBaseServlet {
 
         }
     }
+
     //更新水果信息
-    protected void updateFruit(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    protected void updateFruit(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
         //1.获取表单信息
         int fid = Integer.parseInt(request.getParameter("fid"));
         String fname = request.getParameter("fname");
@@ -145,17 +143,21 @@ public class FruitServlet extends ViewBaseServlet {
         //2.执行更新
         fruitDao.updateFruit(new Fruit(fid,fname,price,fcount,remark));
         //3.资源跳转，返回index页面
-//        super.processTemplate("index",request,response);
+        //super.processTemplate("index",request,response);
         //request.getResponseDispatcher("index.html").forward(request,response);
         //客户端重定向
-        response.sendRedirect("index");
+        response.sendRedirect("fruit.do");
     }
+
     //删除水果信息
-    private void delFruit(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    private void delFruit(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
         int fid = Integer.parseInt(request.getParameter("fid"));
         fruitDao.delFruit(fid);
+        //服务器内部转发
+//        super.processTemplate("fruit.do").forward(request,response);
         //客户端重定向
-        response.sendRedirect("index");
+        response.sendRedirect("fruit.do");
     }
 
 }
