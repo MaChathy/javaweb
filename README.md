@@ -31,6 +31,19 @@ thymeleaf-dev
 ![img_7.png](img_7.png)
 
 2.路径问题
+
+![img_8.png](img_8.png)
     
     1)相对路径
+    上图中的login.html若引用login.css，路径为：../css/login.css
+        ../表示上一级目录
+        /表示当前目录等等
     2)绝对路径
+    绝对路径的根目录：http://localhost:8080/webrrestart
+        (协议:url:端口号/context-root)
+    上图中的index.html的绝对路径为:http://localhost:8080/webrrestart/index.html
+    
+    html中的base标签：
+        <base href="http://localhost:8080/webrrestart/" />
+        作用当前页面上的所有路径都以href的值为基础。
+    thymeleaf中 th:href="@{}"

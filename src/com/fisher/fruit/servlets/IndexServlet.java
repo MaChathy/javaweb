@@ -15,7 +15,7 @@ import java.io.IOException;
 import java.util.List;
 
 /**
- * 从servlet3.0后，可使用注解（@WebServlet）进行注册。
+ * 从servlet3.0后，可使用注解（@WebServlet("...")）进行注册。
  * 全部水果信息实现分页显示
  * 查询关键字信息实现分页显示
  * @author fisher
@@ -46,26 +46,29 @@ public class IndexServlet extends ViewBaseServlet {
         //获取表单操作
         String operate = request.getParameter("operate");
 
-        String keyword = null;
         //若operate不为null,则operate的值为查询表单按钮
+        String keyword = null;
+
         if (StringUtil.isNotEmpty(operate) && "search".equals(operate)){
             //此时，pageNo应还原为1，keyword应从session作用域中获取
             keyword = request.getParameter("keyword");
             pageNo = 1;
+            //若keyword为null，需要设置字符串为"".否则查询会拼接成“%null%”
             if(StringUtil.isEmpty(keyword)){
                 keyword = "";
             }
-            //将keyword保存到session作用域中
+            //将keyword(覆盖)保存到session作用域中
             session.setAttribute("keyword",keyword);
 
-        }else{//此处非表单查询发送来的请求
-
+        }else{
+            //此处非表单查询发送来的请求
+            //此时keyword应从session作用域中获取
             //获取页码
             String pageNoStr = request.getParameter("pageNo");
             if(StringUtil.isNotEmpty(pageNoStr)){
                 pageNo = Integer.parseInt(pageNoStr);
             }
-            //此时keyword应从session作用中获取
+            //keyword应从session作用中获取
             Object keywordObj = session.getAttribute("keyword");
             if (keywordObj != null) {
                 keyword = (String) keywordObj;
@@ -73,7 +76,7 @@ public class IndexServlet extends ViewBaseServlet {
                 keyword = "";
             }
         }
-        //设置页码
+        //更新当前页码的值
         session.setAttribute("pageNo",pageNo);
 
         FruitDao fruitDao = new FruitDaoImpl();
