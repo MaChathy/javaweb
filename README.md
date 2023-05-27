@@ -53,6 +53,10 @@ thymeleaf-dev
 
 ![img_9.png](img_9.png)
 
-改进业务逻辑：
+改进业务逻辑_01：(优化Servlet，多个转化为一个)
 
 ![img_10.png](img_10.png)
+
+改进业务逻辑_02 (mvc reflect)
+
+    通过反射(getClass().getDeclaredMethods())

@@ -12,6 +12,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 import java.util.List;
 
 /**
@@ -32,30 +34,30 @@ public class FruitServlet extends ViewBaseServlet {
         request.setCharacterEncoding("UTF-8");
         response.setCharacterEncoding("UTF-8");
 
+        //获取客户端需求
         String method = request.getParameter("method");
         if(StringUtil.isEmpty(method)){
             method = "index";
         }
-        switch (method){
-            case "index":
-                index(request, response);
-                break;
-            case "addFruit":
-                addFruit(request, response);
-                break;
-            case "editFruit":
-                editFruit(request, response);
-                break;
-            case "delFruit":
-                delFruit(request, response);
-                break;
-            case "updateFruit":
-                updateFruit(request, response);
-                break;
-            default:
-                throw new RuntimeException("method值非法！");
+        //获取当前类中所有的方法（method）
+        Method[] methods = this.getClass().getDeclaredMethods();
+        boolean hasMethod = false;
+        //通过反射调用方法
+        for(Method m : methods){
+            //获取方法名,并判断客户需求是否等于某个方法名
+            if(method.equals(m.getName())){
+                hasMethod = true;
+                //通过反射调用方法
+                try {
+                    m.invoke(this, request, response);
+                    return;
+                } catch (IllegalAccessException | InvocationTargetException e) {
+                    e.printStackTrace();
+                }
+            }
         }
-
+        if (!hasMethod)
+            throw new RuntimeException("Method值:" + method+"非法！");
     }
 
     //显示页面方法
