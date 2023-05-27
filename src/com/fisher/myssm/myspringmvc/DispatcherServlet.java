@@ -18,11 +18,13 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
+import java.lang.reflect.Parameter;
 import java.util.HashMap;
 import java.util.Map;
 
 /**
  * 调度器--处理所有以".do"结尾的请求
+ * 常见错误：
  * @author fisher
  * @version 1.1.1 2023/5/28 00:30:36
  */
@@ -98,25 +100,51 @@ public class DispatcherServlet extends ViewBaseServlet1{
             method = "index";
         }
         //获取当前类中对应的方法（method）
-        Method methods = null;
+//        Method methods = null;
         try {
             //通过反射调用方法
-            methods = controllerBeanObject.getClass().getDeclaredMethod(method,HttpServletRequest.class);
-            if(methods != null){
-                //2、controller组件中的方法调用
-                methods.setAccessible(true);
-                Object methodReturnObj = methods.invoke(controllerBeanObject, request);
-                //3、视图处理
-                String methodReturnStr = (String) methodReturnObj;
-                if(methodReturnStr.startsWith("redirect:")){
-                    String redirectStr = methodReturnStr.substring("redirect:".length(), methodReturnStr.length());
-                    response.sendRedirect(redirectStr);
-                }else {
-                    super.processTemplate(methodReturnStr, request, response);
+            Method[] methods = controllerBeanObject.getClass().getDeclaredMethods();
+            for (Method m : methods) {
+                if(m.getName().equals(method)){
+                    //1、统一获取请求参数
+                    //获取当前方法的参数，返回参数数组
+                    Parameter[] parameters = m.getParameters();
+                    //用来存放参数的值
+                    Object[] parameterValues = new Object[parameters.length];
+                    for (int i = 0; i < parameters.length; i++) {
+                        Parameter parameter = parameters[i];
+                        String parameterName = parameter.getName();
+                        //获取参数值，若参数名是request、response、session。则不通过请求获取参数
+                        switch (parameterName) {
+                            case "request":
+                                parameterValues[i] = request;
+                                break;
+                            case "response":
+                                parameterValues[i] = response;
+                                break;
+                            case "session":
+                                parameterValues[i] = request.getSession();
+                                break;
+                            default:
+                                //从请求中获取参数值
+                                String parameterValue = request.getParameter(parameterName);
+                                parameterValues[i] = parameterValue;
+                                break;
+                        }
+                    }
+                    //2、controller组件中的方法调用
+                    m.setAccessible(true);
+                    Object methodReturnObj = m.invoke(controllerBeanObject,parameterValues);
+                    //3、视图处理
+                    String methodReturnStr = (String) methodReturnObj;
+                    if(methodReturnStr.startsWith("redirect:")){
+                        String redirectStr = methodReturnStr.substring("redirect:".length(), methodReturnStr.length());
+                        response.sendRedirect(redirectStr);
                 }
-            }else
-                throw new RuntimeException("method:" + method +"方法不存在！method值非法。");
-        } catch (IllegalAccessException | InvocationTargetException | NoSuchMethodException e) {
+            }
+//            methods = controllerBeanObject.getClass().getDeclaredMethod(method,HttpServletRequest.class);
+            }
+        } catch (IllegalAccessException | InvocationTargetException e) {
             e.printStackTrace();
         }
     }
