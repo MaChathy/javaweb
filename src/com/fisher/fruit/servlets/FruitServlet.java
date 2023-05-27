@@ -15,8 +15,8 @@ import java.io.IOException;
 import java.util.List;
 
 /**
- * This program demonstrates se_projects
- *
+ * FruitServlet组件，重写service方法
+ *      包括：增、删、改、查
  * @author fisher
  * @version 1.0.1 2023/5/27 - 14:52
  */
@@ -57,6 +57,7 @@ public class FruitServlet extends ViewBaseServlet {
         }
 
     }
+
     //显示页面方法
     private void index(HttpServletRequest request, HttpServletResponse response)
             throws java.io.IOException {
