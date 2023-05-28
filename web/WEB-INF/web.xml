@@ -108,6 +108,19 @@
         <param-value>.html</param-value>
     </context-param>
 
+    <!--配置Servlet初始化参数-->
+    <servlet>
+        <servlet-name>Demo01Servlet</servlet-name>
+        <servlet-class>com.fisher.demoservlet.Demo01Servlet</servlet-class>
+        <init-param>
+            <param-name>hello</param-name>
+            <param-value>world</param-value>
+        </init-param>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>Demo01Servlet</servlet-name>
+        <url-pattern>/demo01</url-pattern>
+    </servlet-mapping>
     <!--
     ①用户（client）请求 action="add.do"
     ②服务器（项目），web.xml中找到url-pattern = /add.do

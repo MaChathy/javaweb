@@ -108,3 +108,56 @@ XML可扩展的标记语言
     1)XML声明
     2)DTD(Document Type Definition) 文档类型定义
     3)XML正文
+
+Servlet中的初始化方法
+
+    //servlet的初始化有两个：init()、init(config)
+    
+    public void init(ServletConfig config) throws ServletException{
+        this.config = config;
+        init();
+    }
+    
+    public void init() throws ServletException{
+        
+    }
+    //若要在servlet初始化时做一些准备工作，则可通过重写init方法
+    //可以通过如下步骤获取初始化设置的数据
+    //1.获取config对象
+    ServletConfig servletConfig = getServletConfig()
+    //2.获取初始化参数值
+    String initValue = config.getInitParameter(key);
+    
+    //通过注解的方式配置Servlet初始化参数
+    @WebServlet(
+        urlPatterns = {"/demo01"},
+        initParams = {
+                @WebInitParam(name = "hello", value = "world"),
+                @WebInitParam(name = "world", value = "Servlet")
+        }
+    )
+
+    //在web.xml中配置Servlet初始化参数
+    <!--配置Servlet初始化参数-->
+    <servlet>
+        <servlet-name>Demo01Servlet</servlet-name>
+        <servlet-class>com.fisher.demoservlet.Demo01Servlet</servlet-class>
+        <init-param>
+            <param-name>hello</param-name>
+            <param-value>world</param-value>
+        </init-param>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>Demo01Servlet</servlet-name>
+        <url-pattern>/demo01</url-pattern>
+    </servlet-mapping>
+
+Servlet中的ServletContext和<context-parameter>
+
+业务层service
+
+IOC
+
+过滤器Filter
+
+TransactionManager、ThreadLocal、OpenSessionInViewFilter
