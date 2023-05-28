@@ -1,4 +1,4 @@
-package com.fisher.fruit.biz;
+package com.fisher.fruit.service;
 
 import com.fisher.fruit.pojo.Fruit;
 
@@ -22,6 +22,9 @@ public interface FruitService {
 
     //删除特定库存记录
     void deleteFruit(Integer fid);
+
+    //修改特定库存记录
+    void updateFruit(Fruit newFruit);
 
     //获取总页数
     Integer getPageCount(String keyword);

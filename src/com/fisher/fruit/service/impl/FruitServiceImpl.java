@@ -1,9 +1,8 @@
-package com.fisher.fruit.biz.impl;
+package com.fisher.fruit.service.impl;
 
-import com.fisher.fruit.biz.FruitService;
 import com.fisher.fruit.dao.FruitDao;
-import com.fisher.fruit.dao.impl.FruitDaoImpl;
 import com.fisher.fruit.pojo.Fruit;
+import com.fisher.fruit.service.FruitService;
 
 import java.util.List;
 
@@ -14,7 +13,7 @@ import java.util.List;
  */
 public class FruitServiceImpl implements FruitService {
 
-    private FruitDao fruitDao = new FruitDaoImpl();
+    private FruitDao fruitDao = null;
 
     @Override
     public List<Fruit> getFruitList(String keyword, Integer pageNo) {
@@ -34,6 +33,11 @@ public class FruitServiceImpl implements FruitService {
     @Override
     public void deleteFruit(Integer fid) {
         fruitDao.delFruit(fid);
+    }
+
+    @Override
+    public void updateFruit(Fruit newFruit) {
+        fruitDao.updateFruit(newFruit);
     }
 
     @Override

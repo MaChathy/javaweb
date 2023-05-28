@@ -1,7 +1,6 @@
 package com.fisher.fruit.controllers;
 
-import com.fisher.fruit.dao.FruitDao;
-import com.fisher.fruit.dao.impl.FruitDaoImpl;
+import com.fisher.fruit.service.impl.FruitServiceImpl;
 import com.fisher.fruit.pojo.Fruit;
 import com.fisher.myssm.utils.StringUtil;
 
@@ -17,12 +16,14 @@ import java.util.List;
  *        现在FruitServlet不是一个servlet组件，是一个Controller组件，则init()方法不会被调用，则super.init()方法不会被调用
  * v1.5.1 FruitServlet不再继承ViewBaseServlet，视图处理
  * v1.6.1 FruitServlet 参数注入
+ * v1.7.1 新增业务层FruitService,controller调用service层处理用户请求
+ * v1.8.1 使用BeanFactory对象
  * @author fisher
- * @version 1.6.1 2023/5/28 00:39:34
+ * @version 1.8.1 2023年5月28日15:04:45
  */
 public class FruitController{
 
-    private FruitDao fruitDao = new FruitDaoImpl();
+    private FruitServiceImpl fruitService = null;
 
     //显示页面方法
     private String index(String operate, String keyword,Integer pageNo,HttpServletRequest request) {
@@ -51,10 +52,12 @@ public class FruitController{
         }
         //更新当前页码的值
         session.setAttribute("pageNo",pageNo);
-        FruitDao fruitDao = new FruitDaoImpl();
-        List<Fruit> fruitList = fruitDao.getFruitList(keyword,pageNo);
+
+        List<Fruit> fruitList = fruitService.getFruitList(keyword,pageNo);
         session.setAttribute("fruitList", fruitList);
-        int pageCount = (fruitDao.getFruitCount(keyword)+4)/5;
+
+        int pageCount = fruitService.getPageCount(keyword);
+
         session.setAttribute("pageCount", pageCount);
         return "index";
     }
@@ -62,14 +65,14 @@ public class FruitController{
     //添加水果库存信息方法
     private String addFruit(String fname,Integer price,Integer fcount,String remark){
         Fruit fruit = new Fruit(0,fname,price,fcount,remark);
-        fruitDao.addFruit(fruit);
+        fruitService.addFruit(fruit);
         return "redirect:fruit.do";
     }
 
     //编辑水果库存信息
     private String editFruit(Integer fid,HttpServletRequest request) {
         if(fid != null){
-            Fruit fruitByFid = fruitDao.getFruitByFid(fid);
+            Fruit fruitByFid = fruitService.getFruitByFId(fid);
             request.setAttribute("afruit", fruitByFid);
             return "edit";
         }
@@ -79,7 +82,7 @@ public class FruitController{
     //更新水果信息
     private String updateFruit(Integer fid,String fname,Integer price,Integer fcount,String remark) {
         //执行更新
-        fruitDao.updateFruit(new Fruit(fid,fname,price,fcount,remark));
+        fruitService.updateFruit(new Fruit(fid,fname,price,fcount,remark));
         //资源跳转，返回index页面;客户端重定向
         return "redirect:fruit.do";
     }
@@ -87,7 +90,7 @@ public class FruitController{
     //删除水果信息
     private String delFruit(Integer fid, HttpServletRequest request) {
         if (fid != null){
-            fruitDao.delFruit(fid);
+            fruitService.deleteFruit(fid);
             return "redirect:fruit.do";
         }
         return "error";

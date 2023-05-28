@@ -190,10 +190,19 @@ Servlet中的ServletContext和<context-parameter>
         ①DAO中的方法都是单精度方法/细粒度方法(一个方法只涉及一个操作);
         ②BO中的方法属于业务方法，粗粒度方法
 
-新增业务层FruitService：
+在库存系统中新增业务层FruitService：
 ![img_13.png](img_13.png)
 
-IOC
+IOC 
+1) 耦合/依赖:
+
+    层与层中的关系
+
+    系统架构或设计的原则是：高内聚，低耦合。
+    
+    层与层之间的关系是高度聚合的，层与层之间的关系是低耦合的，最理想的情况为0耦合。
+
+
 
 过滤器Filter
 
