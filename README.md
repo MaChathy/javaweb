@@ -173,6 +173,23 @@ Servlet中的ServletContext和<context-parameter>
     String contextConfigLocation = servletContext.getInitParameter("contextConfigLocation");
 
 业务层service
+    
+1) MVC (Model(模型)、View(视图)、Controller(控制器))
+    
+    视图层：用于做数据展示和用户交互的一个界面
+
+    控制器：接收客户端的请求，具体业务功能需要借助于模型组件来完成
+
+    模型：存在多种模型，例如比较简单的pojo(Plain Ordinary Java Object)/VO(Value Object);
+   业务模型组件;数据访问层组件...
+        
+        ① pojo/vo (Value Object): 值对象
+        ② DAO (Database Access Object): 数据访问对象
+        ③ BO (Business Object): 业务对象
+    区分业务对象和数据访问对象：
+        ①DAO中的方法都是单精度方法/细粒度方法(一个方法只涉及一个操作);
+        ②BO中的方法属于业务方法，粗粒度方法
+
 
 IOC
 
