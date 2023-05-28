@@ -153,6 +153,24 @@ Servlet中的初始化方法
     </servlet-mapping>
 
 Servlet中的ServletContext和<context-parameter>
+    
+    //在web.xml中配置Servlet初始化参数
+    <!--配置Servlet初始化参数-->
+    <context-param>
+        <param-name>contextConfigLocation</param-name>
+        <param-value>classpath:applicationContext.xml</param-value>
+    </context-param>
+
+    //在初始化方法中获取ServletContext对象
+    ServletContext servletContext = getServletContext();
+    /*
+        在服务器方法中通过request对象获取ServletContext对象
+        request.getServletContext();
+        通过session获取ServletContext对象
+        session.getServletContext();
+    */
+    //获取初始化参数值
+    String contextConfigLocation = servletContext.getInitParameter("contextConfigLocation");
 
 业务层service
 
