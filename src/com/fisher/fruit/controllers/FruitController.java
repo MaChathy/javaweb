@@ -56,7 +56,7 @@ public class FruitController{
         session.setAttribute("fruitList", fruitList);
         int pageCount = (fruitDao.getFruitCount(keyword)+4)/5;
         session.setAttribute("pageCount", pageCount);
-        return "indexFruit";
+        return "index";
     }
 
     //添加水果库存信息方法
@@ -71,7 +71,7 @@ public class FruitController{
         if(fid != null){
             Fruit fruitByFid = fruitDao.getFruitByFid(fid);
             request.setAttribute("afruit", fruitByFid);
-            return "editFruit";
+            return "edit";
         }
         return "error";
     }

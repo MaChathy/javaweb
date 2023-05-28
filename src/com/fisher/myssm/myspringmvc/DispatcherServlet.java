@@ -92,6 +92,7 @@ public class DispatcherServlet extends ViewBaseServlet1{
 
         int lastDotIndex = request.getServletPath().lastIndexOf(".do");
         String servletName = request.getServletPath().substring(1, lastDotIndex);
+
         Object controllerBeanObject = beanMap.get(servletName);
 
         //获取客户端需求,默认为"index"
@@ -135,8 +136,10 @@ public class DispatcherServlet extends ViewBaseServlet1{
                     //3、视图处理
                     String methodReturnStr = (String) methodReturnObj;
                     if(methodReturnStr.startsWith("redirect:")){
-                        String redirectStr = methodReturnStr.substring("redirect:".length(), methodReturnStr.length());
+                        String redirectStr = methodReturnStr.substring("redirect:".length());
                         response.sendRedirect(redirectStr);
+                    }else {
+                        super.processTemplate(methodReturnStr,request,response);
                     }
                 }
             }
