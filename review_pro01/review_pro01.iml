@@ -23,5 +23,7 @@
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" scope="PROVIDED" name="Tomcat 9.0.74" level="application_server_libraries" />
+    <orderEntry type="library" name="attoparser-2.0.5.RELEASE" level="project" />
+    <orderEntry type="library" name="lib" level="application" />
   </component>
 </module>
