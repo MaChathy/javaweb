@@ -63,12 +63,38 @@ thymeleaf-dev
 
 改进业务逻辑_03 (mvc dispatcherServlet(调度))
 ![img_11.png](img_11.png)
-    
+
     为FruitServlet增加调度服务，判断是否需要使用FruitServlet
     
     若url为http://localhost:8080/fruit.do
     则ServletPath为:/fruit.do
+![img_12.png](img_12.png)
     
+    DispatcherServlet类的工作分为两部分：
+        1.根据url定位到能处理这个请求的controller组件
+            1)从url中提取servletPath ： /fruit.do -> fruit
+            2)根据fruit找到对应的FruitController，对应关系存储在applicationContext.xml中
+                <bean id="fruit" class="com.fisher.fruit.controller.FruitController" />
+                通过DOM技术解析xml文件，在中央控制器中形成一个beanMap容器，用来存放所有的controller组件。
+            3)根据获取到的method的值定位到FruitController中需要调用的方法。
+        2.调用Controller组件中的方法：
+            1)获取参数
+                获取要调用的方法的参数签名信息
+                Parameter[] parameters = method.parameters();
+                通过parameter.getName()获取参数名称;
+                准备Object[] parameterValues 数组用来存放对应参数的参数值
+                需要考虑参数的类型问题，类型转化，通过parameter.getType()获取参数类型
+            2)执行方法
+                Object returnObj = method.invoke(controllerBean, parameterValues);
+            3)视图处理
+                String returnStr = (String)returnObj;
+                if(returnStr.startsWith("redirect:")){
+                    ...
+                }else if ...
+    
+改进业务逻辑_04 (mvc view和参数注入)
+
+
 扩展：
 
 XML可扩展的标记语言
