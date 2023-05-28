@@ -190,6 +190,8 @@ Servlet中的ServletContext和<context-parameter>
         ①DAO中的方法都是单精度方法/细粒度方法(一个方法只涉及一个操作);
         ②BO中的方法属于业务方法，粗粒度方法
 
+新增业务层FruitService：
+![img_13.png](img_13.png)
 
 IOC
 
