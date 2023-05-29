@@ -1,0 +1,49 @@
+<!DOCTYPE>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="UTF-8">
+	<link rel="stylesheet" href="css/index.css">
+	<title>银行客户信息</title>
+</head>
+<body>
+	<div id="div_container">
+		<div id="div_fruit_list">
+<!--			<p></p>-->
+			<table id="tbl_fruit">
+				<tr>
+					<th colspan="2">客户信息</th>
+					<th colspan="4">已持有资源</th>
+					<th colspan="4">最多持有资源</th>
+				</tr>
+				<tr>
+					<td>客户id</td>
+					<td>客户名</td>
+					<th>A</th>
+					<th>B</th>
+					<th>C</th>
+					<th>D</th>
+					<th>A</th>
+					<th>B</th>
+					<th>C</th>
+					<th>D</th>
+				</tr>
+				<tr th:if="${#lists.isEmpty(session.clientList)}">
+					<td colspan="10">没有客户</td>
+				</tr>
+				<tr th:unless="${#lists.isEmpty(session.clientList)}" th:each="client : ${session.clientList}">
+					<td th:text="${client.cid}">1</td>
+					<td th:text="client.cname">p1</td>
+					<td th:text="hand_resA_count">4</td>
+					<td th:text="hand_resB_count">5</td>
+					<td th:text="hand_resC_count">6</td>
+					<td th:text="hand_resD_count">7</td>
+					<td th:text="max_resA_count">8</td>
+					<td th:text="max_resB_count">8</td>
+					<td th:text="max_resC_count">8</td>
+					<td th:text="max_resD_count">8</td>
+				</tr>
+			</table>
+		</div>
+	</div>
+</body>
+</html>

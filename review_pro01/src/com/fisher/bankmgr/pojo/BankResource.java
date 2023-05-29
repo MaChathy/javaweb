@@ -8,12 +8,14 @@ package com.fisher.bankmgr.pojo;
 public class BankResource {
     private String res_name;
     private Integer res_count;
+    private Integer max_count;
 
     public BankResource(){ }
 
-    public BankResource(String res_name, Integer res_count){
+    public BankResource(String res_name, Integer res_count,Integer max_count){
         this.res_name = res_name;
         this.res_count = res_count;
+        this.max_count = max_count;
     }
 
     public String getRes_name() {
@@ -30,6 +32,14 @@ public class BankResource {
 
     public void setRes_count(Integer res_count) {
         this.res_count = res_count;
+    }
+
+    public Integer getMax_count() {
+        return max_count;
+    }
+
+    public void setMax_count(Integer max_count) {
+        this.max_count = max_count;
     }
 
     @Override

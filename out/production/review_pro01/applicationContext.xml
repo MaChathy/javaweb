@@ -3,8 +3,8 @@
 <beans>
     <bean id="" class=""/>
 
-    <bean id="" class="">
-        <paroperty />
+    <bean id="bankClientService" class="com.fisher.bankmgr.service.impl.BankMgrServiceImpl">
+        <paroperty name="bankClientDao" ref="com.fisher.bankmgr.dao.impl.BankClientDaoImpl"/>
     </bean>
     <bean id="" class="">
         <paroperty />
