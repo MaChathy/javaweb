@@ -18,12 +18,22 @@ public class BankResourceDaoImpl extends BaseDao implements BankResourceDao {
     @Override
     public List<BankResource> getBankResourcesList() {
         String sql = "SELECT * FROM bank_res;";
-        List<BankResource> list = new ArrayList<BankResource>();
+        List<BankResource> list = new ArrayList<>();
         try {
             list = super.executeQuery(BankResource.class,sql);
         } catch (SQLException throwable) {
             throwable.printStackTrace();
         }
         return list;
+    }
+
+    @Override
+    public void updateBankResource(String res_name,Integer res_count) {
+        String sql = "UPDATE bank_res set res_count = ? where res_name = ?;";
+        try {
+            super.executeUpdate(sql, res_count, res_name);
+        } catch (SQLException throwable) {
+            throwable.printStackTrace();
+        }
     }
 }

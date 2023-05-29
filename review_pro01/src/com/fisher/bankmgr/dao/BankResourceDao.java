@@ -10,7 +10,8 @@ import java.util.List;
  * @version 1.0.1 2023/5/28 - 22:39
  */
 public interface BankResourceDao {
-    //
+    //显示银行资源列表
     List<BankResource> getBankResourcesList();
-
+    //修改指定资源信息
+    void updateBankResource(String res_name,Integer res_count);
 }

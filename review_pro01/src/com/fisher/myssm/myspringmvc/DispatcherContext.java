@@ -1,10 +1,12 @@
 package com.fisher.myssm.myspringmvc;
 
 /**
- * This program demonstrates webfisher
- *
+ * mvc中的中央调度器
  * @author fisher
  * @version 1.0.1 2023/5/28 - 23:52
  */
-public class DispatcherContext {
+public class DispatcherContext extends ViewBaseServlet{
+
+
+
 }
