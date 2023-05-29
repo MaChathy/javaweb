@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<beans>
+    <bean id="" class=""/>
+
+    <bean id="" class="">
+        <paroperty />
+    </bean>
+    <bean id="" class="">
+        <paroperty />
+    </bean>
+
+</beans>
