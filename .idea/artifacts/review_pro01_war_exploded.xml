@@ -7,6 +7,10 @@
         <element id="directory" name="classes">
           <element id="module-output" name="review_pro01" />
         </element>
+        <element id="directory" name="lib">
+          <element id="library" level="module" name="JUnit4" module-name="review_pro01" />
+          <element id="library" level="application" name="lib" />
+        </element>
       </element>
     </root>
   </artifact>

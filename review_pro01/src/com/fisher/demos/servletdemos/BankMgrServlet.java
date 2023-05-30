@@ -1,4 +1,4 @@
-package com.fisher.demos;
+package com.fisher.demos.servletdemos;
 
 import com.fisher.bankmgr.dao.BankClientDao;
 import com.fisher.bankmgr.dao.BankResourceDao;
@@ -20,23 +20,23 @@ import java.util.List;
 /**
  *
  * @author fisher
- * @version 1.0.1 2023/5/29 - 15:38
+ * @version 1.0.1 2023/5/30 - 23:27
  */
-@WebServlet("/index")
-public class IndexServlet extends ViewBaseServlet {
+//@WebServlet("/index")
+public class BankMgrServlet extends ViewBaseServlet {
 
     private BankClientDao bankClientDao = new BankClientDaoImpl();
     private BankResourceDao bankResourceDao = new BankResourceDaoImpl();
 
-
     @Override
-    protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        HttpSession session = req.getSession();
-        List<BankClient> bankClientList = bankClientDao.getBankClientList();
+    protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        HttpSession session = request.getSession();
         List<BankResource> bankResources = bankResourceDao.getBankResourcesList();
-        session.setAttribute("clientList", bankClientList);
+        List<BankClient> bankClients = bankClientDao.getBankClientList();
+
+        session.setAttribute("clientList", bankClients);
         session.setAttribute("resList", bankResources);
-        processTemplate("index.html",req,resp);
-        req.getRequestDispatcher("index.html").forward(req, resp);
+
+//        processTemplate("index",request,response);
     }
 }

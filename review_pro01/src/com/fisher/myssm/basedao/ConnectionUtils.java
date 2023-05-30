@@ -12,10 +12,10 @@ import java.sql.SQLException;
  */
 public class ConnectionUtils {
 
-    private static ThreadLocal<Connection> connectionThreadLocal;
+    private static ThreadLocal<Connection> connectionThreadLocal = new ThreadLocal<>();
 
     public static final String DRIVER = "com.mysql.cj.jdbc.Driver" ;
-    public static final String URL = "jdbc:mysql://localhost:3306/bankmgr?" +
+    public static final String URL = "jdbc:mysql://localhost:3306/bankdb?" +
             "useUnicode=true&characterEncoding=utf-8&useSSL=false";
     public static final String USER = "root";
     public static final String PWD = "547547" ;
@@ -24,7 +24,7 @@ public class ConnectionUtils {
     private static Connection createConnection(){
         try{
             Class.forName(DRIVER);
-            return DriverManager.getConnection(URL);
+            return DriverManager.getConnection(URL,USER,PWD);
         }catch (Exception e){
             e.printStackTrace();
         }

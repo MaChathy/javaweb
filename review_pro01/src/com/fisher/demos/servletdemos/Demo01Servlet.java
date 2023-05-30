@@ -8,7 +8,7 @@ import javax.servlet.http.HttpServlet;
  * @author fisher
  * @version 1.0.1 2023/5/28 - 21:58
  */
-@WebServlet("*.do")
+//@WebServlet("*.do")
 public class Demo01Servlet extends HttpServlet {
 
 
